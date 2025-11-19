@@ -652,31 +652,6 @@ async function initResults(): Promise<void> {
   countDiv.textContent = `Total Responses: ${responses.length}`;
   resultsElement.appendChild(countDiv);
 
-  // Create clear button
-  const clearButton = document.createElement("button");
-  clearButton.textContent = "Clear All Responses";
-  clearButton.style.cssText = "margin-left: 10px; padding: 10px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer;";
-  clearButton.onclick = async () => {
-    if (confirm("Are you sure you want to delete all responses?")) {
-      try {
-        const { error } = await supabase
-          .from("survey_responses")
-          .delete()
-          .neq("id", 0); // Delete all rows
-
-        if (error) {
-          alert("Failed to delete responses: " + error.message);
-        } else {
-          alert("All responses have been deleted.");
-          await initResults();
-        }
-      } catch (error) {
-        alert("Failed to delete responses. Please try again.");
-      }
-    }
-  };
-  resultsElement.appendChild(clearButton);
-
   // Create download CSV button
   const downloadButton = document.createElement("button");
   downloadButton.textContent = "Download CSV";
@@ -862,12 +837,23 @@ async function initAnalytics(): Promise<void> {
   countDiv.textContent = `Analyzing ${responses.length} responses`;
   analyticsElement.appendChild(countDiv);
 
-  // Transform data for analytics - extract the data field
-  const transformedResponses = responses.map(r => r.data || r);
+  // Transform data for analytics - extract the data field and remove sensitive fields
+  const transformedResponses = responses.map(r => {
+    const data = r.data || r;
+    // Remove name and email from analytics
+    const { name, contact, ...analyticsData } = data;
+    return analyticsData;
+  });
+
+  // Filter out sensitive questions from analytics
+  const allQuestions = new Model(surveyConfig).getAllQuestions();
+  const analyticsQuestions = allQuestions.filter(q =>
+    q.name !== 'name' && q.name !== 'contact'
+  );
 
   // Create visualization panel
   const vizPanel = new VisualizationPanel(
-    new Model(surveyConfig).getAllQuestions(),
+    analyticsQuestions,
     transformedResponses
   );
 

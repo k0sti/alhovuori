@@ -9,7 +9,11 @@
     "preview": "vite preview",
     "setup-db": "bun run scripts/setup-db.ts",
     "setup-db:reset": "bun run scripts/setup-db.ts --reset",
-    "setup-db:check": "bun run scripts/setup-db.ts --check"
+    "setup-db:check": "bun run scripts/setup-db.ts --check",
+    "view-results": "bun run scripts/view-results.ts",
+    "view-results:latest": "bun run scripts/view-results.ts --latest",
+    "view-results:json": "bun run scripts/view-results.ts --json",
+    "view-results:all": "bun run scripts/view-results.ts --all"
   },
   "devDependencies": {
     "@types/bun": "latest",
