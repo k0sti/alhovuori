@@ -1,0 +1,698 @@
+{
+  "title": "Alhovuori Yhteisöhanke - Kartoituskysely",
+  "description": "Tervetuloa mukaan Alhovuoren yhteisöhankkeen suunnitteluun! 🌲 Tämän kyselyn avulla kartoitamme yhteisiä visioitamme, tavoitteitamme ja osallistumishalukkuutta. Vastauksesi auttavat meitä rakentamaan yhteisöä, joka vastaa kaikkien toiveita.",
+  "logo": "🏔️",
+  "logoPosition": "right",
+  "showProgressBar": "top",
+  "progressBarType": "buttons",
+  "showQuestionNumbers": "on",
+  "goNextPageAutomatic": false,
+  "pages": [
+    {
+      "name": "intro",
+      "title": "👋 Perustiedot",
+      "description": "Aloitetaan muutamalla peruskysymyksellä",
+      "elements": [
+        {
+          "type": "text",
+          "name": "name",
+          "title": "Nimi",
+          "placeholder": "Nimesi",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "contact",
+          "title": "Sähköposti",
+          "inputType": "email",
+          "placeholder": "nimi@esimerkki.fi",
+          "isRequired": true
+        },
+        {
+          "type": "radiogroup",
+          "name": "involvement_level",
+          "title": "Minkä tason sitoutumisella olet mukana tässä vaiheessa?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "committed",
+              "text": "✅ Vahvasti sitoutunut - haluan varmasti mukaan"
+            },
+            {
+              "value": "likely",
+              "text": "👍 Todennäköisesti mukana - riippuu yksityiskohdista"
+            },
+            {
+              "value": "interested",
+              "text": "🤔 Kiinnostunut - haluan kuulla lisää"
+            },
+            {
+              "value": "exploring",
+              "text": "🔍 Vasta tutustumassa - katsotaan miten kehittyy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "activities",
+      "title": "🌱 Toiminnan Visiot",
+      "description": "Mitä toivot Alhovuorelle tapahtuvan?",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "activity_preferences",
+          "title": "Minkätyyppistä toimintaa toivoisit Alhovuorelle?",
+          "description": "Valitse viisi tärkeintä",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "borderland",
+              "text": "🔥 Borderland-tyylinen yhteiskäyttö burnereiden ja muiden vapaamielisten ihmisten yhteisönä"
+            },
+            {
+              "value": "restaurant",
+              "text": "🍽️ Ravintola tai kahvila"
+            },
+            {
+              "value": "camping",
+              "text": "🏕️ Kesäajan camping-palvelut"
+            },
+            {
+              "value": "festivals",
+              "text": "🎪 Kesäfestivaalit"
+            },
+            {
+              "value": "events",
+              "text": "🎉 Tapahtumat (workshopit, retriitit, teemalliset viikonloput)"
+            },
+            {
+              "value": "venue_rental",
+              "text": "🏛️ Tapahtuma- ja juhlatilojen vuokraus"
+            },
+            {
+              "value": "living",
+              "text": "🏡 Asuminen (pysyvä tai viikonloppu)"
+            },
+            {
+              "value": "farming",
+              "text": "🚜 Maatalous ja ruoantuotanto"
+            },
+            {
+              "value": "free_city",
+              "text": "🏛️ Vapaa kaupunki / itsenäinen kyläyhteisö"
+            },
+            {
+              "value": "remote_work",
+              "text": "💻 Etätyötilat ja co-working"
+            },
+            {
+              "value": "permaculture",
+              "text": "🌿 Permakulttuuritoiminta"
+            },
+            {
+              "value": "storage",
+              "text": "🏭 Varastohalli ja tuotantotilat"
+            },
+            {
+              "value": "arts_crafts",
+              "text": "🎨 Pajat ja tilat erilaiselle taiteelle ja käsityölle"
+            },
+            {
+              "value": "forest_protection",
+              "text": "🌲 Metsien suojelu ja biodiversiteetti"
+            },
+            {
+              "value": "startup_incubator",
+              "text": "🚀 Startup- ja artistihautomo"
+            },
+            {
+              "value": "education",
+              "text": "📚 Koulutus ja oppimisympäristö"
+            },
+            {
+              "value": "wellness",
+              "text": "🧘 Hyvinvointi ja retriitit"
+            },
+            {
+              "value": "other",
+              "text": "💡 Jotain muuta (kerro lisätiedoissa)"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "first_year_focus",
+          "title": "Mihin toimintoihin keskittyisit ensimmäisen vuoden aikana?",
+          "placeholder": "Esim. 'Ensin kunnostettava perustilat, sitten järjestettävä kesällä pari tapahtumaa...'"
+        }
+      ]
+    },
+    {
+      "name": "values",
+      "title": "🌍 Arvot ja Periaatteet",
+      "description": "Yhteisten arvojen kartoitus",
+      "elements": [
+        {
+          "type": "rating",
+          "name": "forest_protection_importance",
+          "title": "Kuinka tärkeää metsien suojelu on sinulle?",
+          "description": "Hankkeen periaatteena on, että metsiä ei hakata rahoitustarkoituksessa",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "Ei kovin tärkeää",
+          "maxRateDescription": "Erittäin tärkeää"
+        },
+        {
+          "type": "rating",
+          "name": "community_values",
+          "title": "Kuinka tärkeää yhteisöllisyys on sinulle tässä hankkeessa?",
+          "isRequired": true,
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "Haluan lähinnä oman rauhan",
+          "maxRateDescription": "Yhteisöllisyys on tärkein asia"
+        },
+        {
+          "type": "radiogroup",
+          "name": "decision_making_preference",
+          "title": "Mikä päätöksentekomalli sopisi sinulle parhaiten?",
+          "description": "Hankkeessa suunnitellaan käytettävän sosiokraattista mallia",
+          "isRequired": true,
+          "choices": [
+            "Sosiokratia (konsensushakuinen, kaikilla vastalauseoikeus)",
+            "Demokratia (äänestys, enemmistö päättää)",
+            "Hybridimalli (sosiokratia pieniin, äänestys isoihin päätöksiin)",
+            "Delegointi (luotan muiden päätöksiin useimmissa asioissa)",
+            "En ole varma, haluan oppia lisää"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "openness_level",
+          "title": "Kuinka avointa toiminnan tulisi olla ulkopuolisille?",
+          "choices": [
+            "Täysin avoin - kuka tahansa voi tulla käymään",
+            "Tapahtumat avoimia, muuten rajattu yhteisölle",
+            "Kutsupohjalta - yhteisö päättää vierailijat",
+            "Yksityinen - vain osakkaat ja heidän vieraansa",
+            "Joustava malli riippuen toiminnosta"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "participation",
+      "title": "🛠️ Osallistuminen ja Panos",
+      "description": "Miten haluat osallistua yhteisön rakentamiseen?",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "time_commitment",
+          "title": "Kuinka paljon aikaa voisit käyttää hankkeeseen?",
+          "isRequired": true,
+          "choices": [
+            "Muutama tunti kuukaudessa (etäosallistuminen)",
+            "Viikonloppu kuukaudessa paikan päällä",
+            "Viikoittaista osallistumista",
+            "Osa-aikainen (1-3 päivää viikossa)",
+            "Lähes kokopäiväinen / asun paikalla",
+            "Vaihtelee kausittain"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "contribution_types",
+          "title": "Millä tavoin haluaisit osallistua?",
+          "description": "Valitse kaikki sopivat",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "physical_work",
+              "text": "🔨 Talkootyöt ja fyysinen työ"
+            },
+            {
+              "value": "organizing_events",
+              "text": "🎯 Tapahtumien järjestäminen"
+            },
+            {
+              "value": "maintenance",
+              "text": "🔧 Ylläpito ja huolto"
+            },
+            {
+              "value": "administration",
+              "text": "📋 Hallinto ja kirjanpito"
+            },
+            {
+              "value": "marketing",
+              "text": "📢 Markkinointi ja viestintä"
+            },
+            {
+              "value": "design",
+              "text": "🎨 Suunnittelu ja design"
+            },
+            {
+              "value": "it_tech",
+              "text": "💻 IT ja teknologia"
+            },
+            {
+              "value": "gardening",
+              "text": "🌱 Puutarhanhoito ja permakultuuri"
+            },
+            {
+              "value": "building",
+              "text": "🏗️ Rakentaminen ja remontointi"
+            },
+            {
+              "value": "teaching",
+              "text": "👨‍🏫 Opettaminen ja workshopit"
+            },
+            {
+              "value": "cooking",
+              "text": "👨‍🍳 Ruoanlaitto ja catering"
+            },
+            {
+              "value": "business_dev",
+              "text": "💼 Liiketoiminnan kehittäminen"
+            },
+            {
+              "value": "legal",
+              "text": "⚖️ Lakiasiat ja sopimukset"
+            },
+            {
+              "value": "financial",
+              "text": "💰 Rahoitus ja talouden suunnittelu"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "skills",
+          "title": "Mitä erityisosaamista sinulla on, josta voisi olla hyötyä yhteisölle?",
+          "placeholder": "Esim. 'Olen puuseppä', 'Osaan permakulttuurisuunnittelua', 'Teen graafista suunnittelua'..."
+        },
+        {
+          "type": "radiogroup",
+          "name": "business_interest",
+          "title": "Haluaisitko harjoittaa liiketoimintaa Alhovuorella?",
+          "choices": [
+            "Kyllä, haluaisin aktiivisesti pyörittää liiketoimintaa",
+            "Kyllä, osa-aikaisesti tai kausiluonteisesti",
+            "Ehkä tulevaisuudessa",
+            "En itse, mutta haluan tukea muiden liiketoimintaa",
+            "Ei, haluan osallistua muilla tavoin"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "business_ideas",
+          "title": "Jos sinulla on liiketoimintaideoita Alhovuorelle, kerro niistä",
+          "visibleIf": "{business_interest} = 'Kyllä, haluaisin aktiivisesti pyörittää liiketoimintaa' or {business_interest} = 'Kyllä, osa-aikaisesti tai kausiluonteisesti' or {business_interest} = 'Ehkä tulevaisuudessa'",
+          "placeholder": "Esim. 'Haluaisin pyörittää kesäkahvilaa', 'Voisin järjestää yoga-retriittejä'..."
+        }
+      ]
+    },
+    {
+      "name": "investment",
+      "title": "💰 Taloudellinen Osallistuminen",
+      "description": "Kartoitetaan mahdollisuuksia ja odotuksia sijoitukselle",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "investment_amount",
+          "title": "Kuinka paljon olisit valmis sijoittamaan hankkeeseen?",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "no_investment",
+              "text": "En sijoita rahallisesti, mutta haluan osallistua muilla tavoilla"
+            },
+            {
+              "value": "10k",
+              "text": "10 000€"
+            },
+            {
+              "value": "15k",
+              "text": "15 000€"
+            },
+            {
+              "value": "20k",
+              "text": "20 000€"
+            },
+            {
+              "value": "30k",
+              "text": "30 000€"
+            },
+            {
+              "value": "40k",
+              "text": "40 000€"
+            },
+            {
+              "value": "50k",
+              "text": "50 000€"
+            },
+            {
+              "value": "unclear",
+              "text": "En ole vielä varma"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "return_expectations",
+          "title": "Mitä odotat sijoitukseltasi?",
+          "visibleIf": "{investment_amount} != 'no_investment'",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "no_return",
+              "text": "Ei tuotto-odotuksia - tavoite on luoda arvojenmukaista toimintaa"
+            },
+            {
+              "value": "return_investment",
+              "text": "Sijoituksen takaisin pitkällä aikavälillä (~10v) kohtuullisella tuotolla (esim. 2x)"
+            },
+            {
+              "value": "business_profit",
+              "text": "Tuottavaa liiketoimintaa ja jatkuvaa kassavirtaa"
+            },
+            {
+              "value": "mixed",
+              "text": "Yhdistelmä: arvotoimintaa + kohtuullinen tuotto pitkällä aikavälillä"
+            },
+            {
+              "value": "other",
+              "text": "Jotain muuta (kerro lisätiedoissa)"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "payment_timeline",
+          "title": "Milloin pystyisit sijoittamaan?",
+          "visibleIf": "{investment_amount} != 'no_investment' and {investment_amount} != 'unclear'",
+          "choices": [
+            "Heti kun yhtiö perustetaan",
+            "1-3 kuukauden sisällä",
+            "3-6 kuukauden sisällä",
+            "Myöhemmin"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "usage",
+      "title": "🏠 Käyttö ja Asuminen",
+      "description": "Miten käyttäisit Alhovuoren tiloja?",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "cabin_interest",
+          "title": "Oletko kiinnostunut omasta tontista?",
+          "isRequired": true,
+          "choices": [
+            "Kyllä, kiinnostunut jos mahdollista",
+            "Ehkä, riippuu hinnasta ja ehdoista",
+            "Ei omaa tonttia, mutta yhteiskäyttö riittää",
+            "Ei kiinnostusta tonttiin"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "cabin_usage",
+          "title": "Mihin käyttäisit mökkiä?",
+          "description": "Voit valita useita",
+          "visibleIf": "{cabin_interest} = 'Kyllä, ensisijainen toive' or {cabin_interest} = 'Kyllä, kiinnostunut jos mahdollista' or {cabin_interest} = 'Ehkä, riippuu hinnasta ja ehdoista'",
+          "choices": [
+            "Viikonloppuasunto",
+            "Kesäasunto",
+            "Vakituinen asunto",
+            "Etätyöpaikka",
+            "Vuokraus muille",
+            "Henkilökohtainen retriitti",
+            "Taide- tai työtila"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "space_needs",
+          "title": "Mitä yhteisiä tiloja toivoisit Alhovuorelle?",
+          "description": "Valitse kaikki kiinnostavat",
+          "choices": [
+            "Etätyötilat / co-working",
+            "Työpajat ja käsityötilat",
+            "Varastotilat",
+            "Sauna",
+            "Yhteiskeittiö",
+            "Tapahtumatilat",
+            "Liikuntapaikka",
+            "Yhteisviljelypalstat",
+            "Vierashuoneet"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "visit_frequency",
+          "title": "Kuinka usein arvioit käyttäväsi Alhovuoren tiloja?",
+          "choices": [
+            "Asuisin paikalla pysyvästi",
+            "Viikoittain",
+            "Pari kertaa kuussa",
+            "Kerran kuussa",
+            "Kausiluonteisesti (esim. kesäisin)",
+            "Vain tapahtumien aikaan",
+            "Harvoin"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "development",
+      "title": "🏗️ Kehittäminen ja Investoinnit",
+      "description": "Näkemyksiä alueen kehittämisestä",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "priority_projects",
+          "title": "Mitkä kehitysprojektit olivat tärkeimmät",
+          "description": "Valtse enintään viisi",
+          "choices": [
+            {
+              "value": "basic_renovation",
+              "text": "Rakennusten peruskorjaus"
+            },
+            {
+              "value": "restaurant_renovation",
+              "text": "Ravintolan korjaus ja rakennus"
+            },
+            {
+              "value": "scrap_cleanup",
+              "text": "Rautaromun purkaminen ja siistiminen"
+            },
+            {
+              "value": "solar_energy",
+              "text": "Aurinkopaneelit ja uusiutuva energia"
+            },
+            {
+              "value": "common_spaces",
+              "text": "Yhteisten tilojen rakentaminen"
+            },
+            {
+              "value": "sauna",
+              "text": "Saunan rakentaminen/kunnostus"
+            },
+            {
+              "value": "remote_work_spaces",
+              "text": "Etätyötilojen luominen"
+            },
+            {
+              "value": "event_areas",
+              "text": "Tapahtuma-alueiden rakentaminen"
+            },
+            {
+              "value": "permaculture",
+              "text": "Puutarhan ja permakulttuurin aloittaminen"
+            },
+            {
+              "value": "cabin_zoning",
+              "text": "Mökkitonttien kaavoitus"
+            },
+            {
+              "value": "storage_hall",
+              "text": "Varastohallin rakentaminen"
+            }
+          ]
+        },
+        {
+          "type": "rating",
+          "name": "renovation_participation",
+          "title": "Kuinka paljon haluaisit osallistua fyysiseen rakentamiseen ja remontteihin?",
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "En lainkaan, maksan mieluummin",
+          "maxRateDescription": "Erittäin paljon, rakastan rakentamista"
+        },
+        {
+          "type": "comment",
+          "name": "longterm_vision",
+          "title": "Millainen on unelmiesi Alhovuori 10 vuoden päästä?",
+          "placeholder": "Kerro vapaasti miltä paikka näyttää ja mitä siellä tapahtuu vuonna 2035..."
+        }
+      ]
+    },
+    {
+      "name": "community_life",
+      "title": "👥 Yhteisöelämä",
+      "description": "Millaisen yhteisön haluat rakentaa?",
+      "elements": [
+        {
+          "type": "rating",
+          "name": "governance_participation",
+          "title": "Kuinka aktiivisesti haluaisit osallistua hallintoon ja päätöksentekoon?",
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "Luotan muiden päätöksiin",
+          "maxRateDescription": "Haluan olla aktiivisesti mukana päättämässä"
+        },
+        {
+          "type": "radiogroup",
+          "name": "conflict_resolution",
+          "title": "Miten toivoisit konfliktien ratkaistavan?",
+          "choices": [
+            "Avoin keskustelu ja dialogi",
+            "Sovittelu ulkopuolisen fasilitaattorin avulla",
+            "Äänestys yhteisössä",
+            "Hallitus päättää",
+            "Eri menetelmät eri tilanteisiin"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "social_events",
+          "title": "Millaisia yhteisötapahtumia toivoisit?",
+          "description": "Valitse kiinnostavat",
+          "choices": [
+            "Säännölliset yhteiset illalliset",
+            "Workshopit ja oppimistapahtumat",
+            "Juhlat ja juhlapyhät yhdessä",
+            "Talkoot",
+            "Saunailtoja",
+            "Säännölliset yhteisökokoukset",
+            "Retriitit ja hiljentyminen",
+            "Festivaalit ja suuremmat tapahtumat",
+            "Minimaalisesti - haluan lähinnä omaa rauhaa"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "concerns",
+      "title": "⚠️ Huolenaiheet ja Riskit",
+      "description": "Mitä asioita mietityttää?",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "main_concerns",
+          "title": "Mitkä asiat huolestuttavat sinua hankkeessa?",
+          "description": "Valitse kaikki sopivat",
+          "choices": [
+            {
+              "value": "financial_risk",
+              "text": "💰 Taloudellinen riski"
+            },
+            {
+              "value": "running_costs",
+              "text": "💸 Juoksevat kulut voivat olla liian korkeat"
+            },
+            {
+              "value": "time_commitment",
+              "text": "⏰ Aikasitoumus voi olla liian suuri"
+            },
+            {
+              "value": "conflicts",
+              "text": "😤 Mahdolliset konfliktit yhteisössä"
+            },
+            {
+              "value": "decision_making",
+              "text": "🤔 Päätöksenteko voi olla hankalaa"
+            },
+            {
+              "value": "legal_issues",
+              "text": "⚖️ Oikeudelliset asiat ja vastuut"
+            },
+            {
+              "value": "neighbor_conflicts",
+              "text": "🏘️ Konfliktit naapureiden kanssa"
+            },
+            {
+              "value": "maintenance",
+              "text": "🔧 Ylläpidon työmäärä"
+            },
+            {
+              "value": "isolation",
+              "text": "🚗 Etäisyys ja eristäytyneisyys"
+            },
+            {
+              "value": "commitment",
+              "text": "🔒 Liian vahva sitoutuminen"
+            },
+            {
+              "value": "vision_mismatch",
+              "text": "🎯 Visiot menevät ristiin"
+            },
+            {
+              "value": "profitability",
+              "text": "📊 Hanke ei ole taloudellisesti kannattava"
+            },
+            {
+              "value": "other",
+              "text": "❓ Muuta (kerro vapaasti)"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "deal_breakers",
+          "title": "Onko jotain ehdottomia 'deal breakereitä' - asioita, jotka saisivat sinut vetäytymään hankkeesta?",
+          "placeholder": "Esim. 'Jos metsää hakataan', 'Jos juoksevat kulut ovat yli X€/kk'..."
+        },
+        {
+          "type": "comment",
+          "name": "must_haves",
+          "title": "Mitkä asiat ovat sinulle ehdottomia vaatimuksia onnistuneelle hankkeelle?",
+          "placeholder": "Esim. 'Läpinäkyvä talous', 'Ekologinen toiminta', 'Hyvä yhteishenki'..."
+        }
+      ]
+    },
+    {
+      "name": "open_feedback",
+      "title": "💭 Vapaa Sana",
+      "description": "Lopuksi vielä tilaa avoimelle palautteelle",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "free_wishes",
+          "title": "Mitä tahansa muita toiveita, ajatuksia tai ideoita paikan suhteen?",
+          "placeholder": "Kerro vapaasti mitä tahansa tulee mieleen..."
+        },
+        {
+          "type": "comment",
+          "name": "unique_contribution",
+          "title": "Mikä tekee sinusta ainutlaatuisen panoksen tälle yhteisölle?",
+          "placeholder": "Esim. 'Osaan rakentaa kelluvia saunoja', 'Tunnen kaikki burnerit Suomessa'..."
+        }
+      ]
+    }
+  ],
+  "showCompletedPage": true,
+  "completedHtml": "<div style='text-align: center; padding: 2em;'><h2>🎉 Kiitos vastauksistasi!</h2><p>Vastauksesi auttavat meitä rakentamaan yhteisöä, joka vastaa kaikkien toiveita ja tarpeita.</p><h3>Seuraavat askeleet:</h3><ol style='text-align: left; display: inline-block;'><li>Analysoimme vastaukset ja kartoitamme yhteisiä tavoitteita</li><li>Järjestämme yhteisen tapaamisen vision täsmentämiseksi</li><li>Laaditaan yksityiskohtainen suunnitelma ja osakassopimus</li></ol><p><strong>Pidämme yhteyttä pian! 🌲</strong></p></div>",
+  "completedHtmlOnCondition": [
+    {
+      "expression": "{involvement_level} = 'committed'",
+      "html": "<div style='text-align: center; padding: 2em;'><h2>🎉 Kiitos vahvasta sitoutumisestasi!</h2><p>On upeaa, että olet vahvasti mukana rakentamassa Alhovuoren yhteisöä!</p><h3>Seuraavat askeleet:</h3><ol style='text-align: left; display: inline-block;'><li>Analysoimme vastaukset ja kartoitamme yhteisiä tavoitteita</li><li>Järjestämme yhteisen tapaamisen vision täsmentämiseksi</li><li>Laaditaan yksityiskohtainen suunnitelma ja osakassopimus</li></ol><p><strong>Olemme yhteydessä erittäin pian! 🌲</strong></p></div>"
+    }
+  ],
+  "showPreviewBeforeComplete": "showAnsweredQuestions",
+  "locale": "fi"
+}

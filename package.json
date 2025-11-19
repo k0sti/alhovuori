@@ -1,0 +1,30 @@
+{
+  "name": "vision",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "setup-db": "bun run scripts/setup-db.ts",
+    "setup-db:reset": "bun run scripts/setup-db.ts --reset",
+    "setup-db:check": "bun run scripts/setup-db.ts --check"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "vite": "^7.2.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.83.0",
+    "postgres": "^3.4.7",
+    "survey-analytics": "^2.3.15",
+    "survey-core": "^2.3.15",
+    "survey-js-ui": "^2.3.15",
+    "survey-pdf": "^2.3.15",
+    "tabulator-tables": "^6.3.1"
+  }
+}
