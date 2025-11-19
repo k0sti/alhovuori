@@ -195,8 +195,6 @@
           "choices": [
             "Täysin avoin - kuka tahansa voi tulla käymään",
             "Tapahtumat avoimia, muuten rajattu yhteisölle",
-            "Kutsupohjalta - yhteisö päättää vierailijat",
-            "Yksityinen - vain osakkaat ja heidän vieraansa",
             "Joustava malli riippuen toiminnosta"
           ]
         }
@@ -675,12 +673,6 @@
           "name": "free_wishes",
           "title": "Mitä tahansa muita toiveita, ajatuksia tai ideoita paikan suhteen?",
           "placeholder": "Kerro vapaasti mitä tahansa tulee mieleen..."
-        },
-        {
-          "type": "comment",
-          "name": "unique_contribution",
-          "title": "Mikä tekee sinusta ainutlaatuisen panoksen tälle yhteisölle?",
-          "placeholder": "Esim. 'Osaan rakentaa kelluvia saunoja', 'Tunnen kaikki burnerit Suomessa'..."
         }
       ]
     }
