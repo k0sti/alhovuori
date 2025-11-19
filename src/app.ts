@@ -56,6 +56,118 @@ async function saveResponse(responseData: any): Promise<boolean> {
 
 // Initialize survey
 let currentSurvey: Model | null = null;
+let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+
+// LocalStorage key for form data
+const STORAGE_KEY = 'survey_form_data';
+const LAST_SAVE_KEY = 'survey_last_save';
+const FORM_COMPLETED_KEY = 'survey_form_completed';
+
+// Save form data to localStorage
+function saveFormData(data: any): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(LAST_SAVE_KEY, new Date().toISOString());
+    updateSaveIndicator('saved');
+  } catch (error) {
+    console.error('Error saving to localStorage:', error);
+    updateSaveIndicator('error');
+  }
+}
+
+// Load form data from localStorage
+function loadFormData(): any | null {
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    return data ? JSON.parse(data) : null;
+  } catch (error) {
+    console.error('Error loading from localStorage:', error);
+    return null;
+  }
+}
+
+// Clear form data from localStorage
+function clearFormData(): void {
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(LAST_SAVE_KEY);
+    localStorage.removeItem(FORM_COMPLETED_KEY);
+    updateSaveIndicator('cleared');
+  } catch (error) {
+    console.error('Error clearing localStorage:', error);
+  }
+}
+
+// Get last save time
+function getLastSaveTime(): string | null {
+  return localStorage.getItem(LAST_SAVE_KEY);
+}
+
+// Mark form as completed
+function markFormCompleted(): void {
+  localStorage.setItem(FORM_COMPLETED_KEY, 'true');
+}
+
+// Check if form has been completed before
+function hasCompletedForm(): boolean {
+  return localStorage.getItem(FORM_COMPLETED_KEY) === 'true';
+}
+
+// Show/hide tabs based on completion status
+function updateTabsVisibility(): void {
+  const tabs = document.getElementById('mainTabs');
+  if (tabs) {
+    if (hasCompletedForm()) {
+      tabs.style.display = 'flex';
+    } else {
+      tabs.style.display = 'none';
+    }
+  }
+}
+
+// Update save indicator UI
+function updateSaveIndicator(status: 'saving' | 'saved' | 'error' | 'cleared'): void {
+  const indicator = document.getElementById('saveIndicator');
+  if (!indicator) return;
+
+  switch (status) {
+    case 'saving':
+      indicator.textContent = '💾 Saving...';
+      indicator.style.color = '#666';
+      break;
+    case 'saved':
+      indicator.textContent = '✓ Saved';
+      indicator.style.color = '#4caf50';
+      setTimeout(() => {
+        indicator.textContent = '';
+      }, 2000);
+      break;
+    case 'error':
+      indicator.textContent = '⚠ Save failed';
+      indicator.style.color = '#f44336';
+      break;
+    case 'cleared':
+      indicator.textContent = '🗑 Cleared';
+      indicator.style.color = '#666';
+      setTimeout(() => {
+        indicator.textContent = '';
+      }, 2000);
+      break;
+  }
+}
+
+// Auto-save with debounce
+function autoSave(data: any): void {
+  updateSaveIndicator('saving');
+
+  if (saveTimeout) {
+    clearTimeout(saveTimeout);
+  }
+
+  saveTimeout = setTimeout(() => {
+    saveFormData(data);
+  }, 500); // Save 500ms after last change
+}
 
 // Check if we should skip validation (for development)
 function shouldSkipValidation(): boolean {
@@ -114,11 +226,37 @@ function initSurvey(): void {
   // Create survey model
   currentSurvey = new Model(surveyConfig);
 
+  // Load saved data from localStorage
+  const savedData = loadFormData();
+  if (savedData) {
+    currentSurvey.data = savedData;
+    console.log("Loaded saved form data from localStorage");
+
+    // Show notification that saved data was loaded
+    const lastSave = getLastSaveTime();
+    if (lastSave) {
+      const lastSaveDate = new Date(lastSave);
+      const indicator = document.getElementById('saveIndicator');
+      if (indicator) {
+        indicator.textContent = `📂 Loaded saved progress from ${lastSaveDate.toLocaleString()}`;
+        indicator.style.color = '#1976d2';
+        setTimeout(() => {
+          indicator.textContent = '';
+        }, 5000);
+      }
+    }
+  }
+
   // In dev mode, disable validation for easier testing
   if (shouldSkipValidation()) {
     currentSurvey.checkErrorsMode = "onComplete";
     currentSurvey.showNavigationButtons = false; // We render our own buttons
   }
+
+  // Auto-save on value changes
+  currentSurvey.onValueChanged.add((sender) => {
+    autoSave(sender.data);
+  });
 
   // Add event handler for completion
   currentSurvey.onComplete.add(async (sender) => {
@@ -127,14 +265,65 @@ function initSurvey(): void {
     const success = await saveResponse(sender.data);
 
     if (success) {
+      // Keep the data in localStorage so user can edit and resubmit
+      saveFormData(sender.data);
+
+      // Mark form as completed and show tabs
+      markFormCompleted();
+      updateTabsVisibility();
+
       setTimeout(() => {
-        alert("Thank you! Your response has been saved. Switch to 'View Results' tab to see all responses.");
+        alert("Thank you! Your response has been saved.\n\nYou can now:\n• View all participant names in the 'Names' tab\n• See analytics in the 'Analytics' tab\n• Edit your response and resubmit\n• Click 'Clear Form' to start a new response");
+
+        // Show success message in save indicator
+        const indicator = document.getElementById('saveIndicator');
+        if (indicator) {
+          indicator.textContent = '✓ Response submitted successfully';
+          indicator.style.color = '#4caf50';
+        }
       }, 100);
     }
   });
 
   // Render survey directly
   renderSurvey(currentSurvey, surveyElement);
+
+  // Setup clear form button
+  setupClearFormButton();
+}
+
+// Setup clear form button
+function setupClearFormButton(): void {
+  const clearBtn = document.getElementById("clearFormBtn");
+  if (!clearBtn) return;
+
+  clearBtn.onclick = () => {
+    if (confirm("Are you sure you want to clear all form data? This will return you to the welcome screen.")) {
+      clearFormData();
+
+      // Reinitialize the survey to clear all fields
+      if (currentSurvey) {
+        currentSurvey.clear(true, true);
+        currentSurvey.data = {};
+      }
+
+      // Hide tabs and show welcome view
+      updateTabsVisibility();
+
+      const formView = document.getElementById("formView");
+      const welcomeView = document.getElementById("welcomeView");
+
+      if (formView && welcomeView) {
+        formView.classList.remove("active");
+        welcomeView.classList.add("active");
+
+        // Setup the start survey button again
+        setupStartSurveyButton();
+      }
+
+      alert("Form has been cleared! You'll see the welcome screen again.");
+    }
+  };
 }
 
 // Simple survey renderer
@@ -860,6 +1049,129 @@ async function initAnalytics(): Promise<void> {
   vizPanel.render(analyticsElement);
 }
 
+// Initialize names view
+async function initNames(): Promise<void> {
+  const namesElement = document.getElementById("namesElement");
+  if (!namesElement) return;
+
+  namesElement.innerHTML = '<div style="padding: 20px; text-align: center;">Loading names...</div>';
+
+  const responses = await loadResponses();
+
+  namesElement.innerHTML = "";
+
+  if (responses.length === 0) {
+    namesElement.innerHTML = `
+      <div style="padding: 20px; text-align: center; color: #666;">
+        <p>No responses yet. Fill out the form first!</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Show response count
+  const countDiv = document.createElement("div");
+  countDiv.className = "response-count";
+  countDiv.textContent = `Total Participants: ${responses.length}`;
+  namesElement.appendChild(countDiv);
+
+  // Create names list
+  const namesList = document.createElement("div");
+  namesList.style.cssText = "margin-top: 20px;";
+
+  // Extract names from responses
+  const names = responses
+    .map(r => {
+      const data = r.data || r;
+      return {
+        name: data.name || 'Anonymous',
+        timestamp: r.created_at
+      };
+    })
+    .filter(item => item.name && item.name !== 'Anonymous');
+
+  if (names.length === 0) {
+    namesElement.innerHTML += `
+      <div style="padding: 20px; text-align: center; color: #666;">
+        <p>No names provided in responses.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Create a simple list of names
+  const list = document.createElement("ul");
+  list.style.cssText = `
+    list-style: none;
+    padding: 0;
+    max-width: 600px;
+    margin: 0 auto;
+  `;
+
+  names.forEach((item, index) => {
+    const listItem = document.createElement("li");
+    listItem.style.cssText = `
+      padding: 15px;
+      margin-bottom: 10px;
+      background: ${index % 2 === 0 ? '#f9f9f9' : 'white'};
+      border-radius: 4px;
+      border-left: 4px solid #1976d2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    `;
+
+    const nameSpan = document.createElement("span");
+    nameSpan.textContent = item.name;
+    nameSpan.style.cssText = "font-weight: 500; font-size: 16px;";
+
+    const dateSpan = document.createElement("span");
+    dateSpan.textContent = new Date(item.timestamp).toLocaleDateString();
+    dateSpan.style.cssText = "color: #666; font-size: 14px;";
+
+    listItem.appendChild(nameSpan);
+    listItem.appendChild(dateSpan);
+    list.appendChild(listItem);
+  });
+
+  namesList.appendChild(list);
+  namesElement.appendChild(namesList);
+}
+
+// Check URL parameters to show/hide Results tab
+function checkResultsAccess(): void {
+  const params = new URLSearchParams(window.location.search);
+  const resultsTab = document.querySelector('[data-view="results"]') as HTMLElement;
+
+  if (resultsTab) {
+    if (params.has('results')) {
+      resultsTab.style.display = '';
+    } else {
+      resultsTab.style.display = 'none';
+    }
+  }
+}
+
+// Setup start survey button
+function setupStartSurveyButton(): void {
+  const startBtn = document.getElementById("startSurveyBtn");
+  if (!startBtn) return;
+
+  startBtn.onclick = () => {
+    // Switch to form view
+    const welcomeView = document.getElementById("welcomeView");
+    const formView = document.getElementById("formView");
+
+    if (welcomeView && formView) {
+      welcomeView.classList.remove("active");
+      formView.classList.add("active");
+
+      // Initialize the survey
+      initSurvey();
+    }
+  };
+}
+
 // Tab switching
 function initTabs(): void {
   const tabs = document.querySelectorAll(".tab");
@@ -882,8 +1194,15 @@ function initTabs(): void {
 
       // Initialize the appropriate view
       switch (viewName) {
+        case "welcome":
+          // Welcome view is static, no initialization needed
+          setupStartSurveyButton();
+          break;
         case "form":
           initSurvey();
+          break;
+        case "names":
+          initNames();
           break;
         case "results":
           initResults();
@@ -898,6 +1217,30 @@ function initTabs(): void {
 
 // Initialize app
 document.addEventListener("DOMContentLoaded", () => {
+  checkResultsAccess();
+  updateTabsVisibility();
   initTabs();
-  initSurvey();
+
+  // Check if user has completed the form before
+  if (hasCompletedForm()) {
+    // Show form view with tabs visible
+    const welcomeView = document.getElementById("welcomeView");
+    const formView = document.getElementById("formView");
+
+    if (welcomeView && formView) {
+      welcomeView.classList.remove("active");
+      formView.classList.add("active");
+
+      // Activate the form tab
+      const formTab = document.querySelector('[data-view="form"]');
+      if (formTab) {
+        formTab.classList.add("active");
+      }
+    }
+
+    initSurvey();
+  } else {
+    // Show welcome view and setup start button
+    setupStartSurveyButton();
+  }
 });

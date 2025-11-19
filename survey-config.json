@@ -145,58 +145,12 @@
           "name": "first_year_focus",
           "title": "Mihin toimintoihin keskittyisit ensimmäisen vuoden aikana?",
           "placeholder": "Esim. 'Ensin kunnostettava perustilat, sitten järjestettävä kesällä pari tapahtumaa...'"
-        }
-      ]
-    },
-    {
-      "name": "values",
-      "title": "🌍 Arvot ja Periaatteet",
-      "description": "Yhteisten arvojen kartoitus",
-      "elements": [
-        {
-          "type": "rating",
-          "name": "forest_protection_importance",
-          "title": "Kuinka tärkeää metsien suojelu on sinulle?",
-          "description": "Hankkeen periaatteena on, että metsiä ei hakata rahoitustarkoituksessa",
-          "isRequired": true,
-          "rateMin": 1,
-          "rateMax": 5,
-          "minRateDescription": "Ei kovin tärkeää",
-          "maxRateDescription": "Erittäin tärkeää"
         },
         {
-          "type": "rating",
-          "name": "community_values",
-          "title": "Kuinka tärkeää yhteisöllisyys on sinulle tässä hankkeessa?",
-          "isRequired": true,
-          "rateMin": 1,
-          "rateMax": 5,
-          "minRateDescription": "Haluan lähinnä oman rauhan",
-          "maxRateDescription": "Yhteisöllisyys on tärkein asia"
-        },
-        {
-          "type": "radiogroup",
-          "name": "decision_making_preference",
-          "title": "Mikä päätöksentekomalli sopisi sinulle parhaiten?",
-          "description": "Hankkeessa suunnitellaan käytettävän sosiokraattista mallia",
-          "isRequired": true,
-          "choices": [
-            "Sosiokratia (konsensushakuinen, kaikilla vastalauseoikeus)",
-            "Demokratia (äänestys, enemmistö päättää)",
-            "Hybridimalli (sosiokratia pieniin, äänestys isoihin päätöksiin)",
-            "Delegointi (luotan muiden päätöksiin useimmissa asioissa)",
-            "En ole varma, haluan oppia lisää"
-          ]
-        },
-        {
-          "type": "radiogroup",
-          "name": "openness_level",
-          "title": "Kuinka avointa toiminnan tulisi olla ulkopuolisille?",
-          "choices": [
-            "Täysin avoin - kuka tahansa voi tulla käymään",
-            "Tapahtumat avoimia, muuten rajattu yhteisölle",
-            "Joustava malli riippuen toiminnosta"
-          ]
+          "type": "comment",
+          "name": "inspiration",
+          "title": "Mikä Alhovuoressa inspiroi sinua?",
+          "placeholder": "Kerro vapaasti, mikä tässä hankkeessa herättää innostusta ja toivoa..."
         }
       ]
     },
@@ -287,7 +241,7 @@
         {
           "type": "comment",
           "name": "skills",
-          "title": "Mitä erityisosaamista sinulla on, josta voisi olla hyötyä yhteisölle?",
+          "title": "Mitä osaamista sinulla on, josta voisit tarjota yhteisölle?",
           "placeholder": "Esim. 'Olen puuseppä', 'Osaan permakulttuurisuunnittelua', 'Teen graafista suunnittelua'..."
         },
         {
@@ -313,8 +267,8 @@
     },
     {
       "name": "investment",
-      "title": "💰 Taloudellinen Osallistuminen",
-      "description": "Kartoitetaan mahdollisuuksia ja odotuksia sijoitukselle",
+      "title": "💰 Panostus ja Käyttö",
+      "description": "Taloudellinen osallistuminen ja tilojen käyttö",
       "elements": [
         {
           "type": "radiogroup",
@@ -396,14 +350,7 @@
             "3-6 kuukauden sisällä",
             "Myöhemmin"
           ]
-        }
-      ]
-    },
-    {
-      "name": "usage",
-      "title": "🏠 Käyttö ja Asuminen",
-      "description": "Miten käyttäisit Alhovuoren tiloja?",
-      "elements": [
+        },
         {
           "type": "radiogroup",
           "name": "cabin_interest",
@@ -544,6 +491,17 @@
       "title": "👥 Yhteisöelämä",
       "description": "Millaisen yhteisön haluat rakentaa?",
       "elements": [
+        {
+          "type": "radiogroup",
+          "name": "openness_level",
+          "title": "Kuinka avointa toiminnan tulisi olla ulkopuolisille?",
+          "isRequired": true,
+          "choices": [
+            "Täysin avoin - kuka tahansa voi tulla käymään",
+            "Tapahtumat avoimia, muuten rajattu yhteisölle",
+            "Joustava malli riippuen toiminnosta"
+          ]
+        },
         {
           "type": "rating",
           "name": "governance_participation",
