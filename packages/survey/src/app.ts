@@ -5,69 +5,25 @@ import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import { VisualizationPanel } from "survey-analytics";
 import "survey-analytics/survey.analytics.min.css";
 import "tabulator-tables/dist/css/tabulator.min.css";
-import { createClient } from "@supabase/supabase-js";
-
-// Initialize Supabase client
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_API_KEY
-);
-
-// Load responses from Supabase
-async function loadResponses(): Promise<any[]> {
-  try {
-    const { data, error } = await supabase
-      .from("survey_responses")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      console.error("Error loading responses:", error);
-      return [];
-    }
-
-    return data || [];
-  } catch (error) {
-    console.error("Error loading responses:", error);
-    return [];
-  }
-}
-
-// Save response to Supabase
-async function saveResponse(responseData: any): Promise<boolean> {
-  try {
-    const { error } = await supabase
-      .from("survey_responses")
-      .insert([{ data: responseData }]);
-
-    if (error) {
-      console.error("Error saving response:", error);
-      alert("Failed to save response: " + error.message);
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.error("Error saving response:", error);
-    alert("Failed to save response. Please try again.");
-    return false;
-  }
-}
+import { loadResponses, saveResponse } from "@shared/utils/supabase";
+import {
+  STORAGE_KEY,
+  LAST_SAVE_KEY,
+  FORM_COMPLETED_KEY,
+  saveToLocalStorage,
+  loadFromLocalStorage,
+  clearLocalStorageKeys
+} from "@shared/utils/storage";
 
 // Initialize survey
 let currentSurvey: Model | null = null;
 let saveTimeout: ReturnType<typeof setTimeout> | null = null;
 
-// LocalStorage key for form data
-const STORAGE_KEY = 'survey_form_data';
-const LAST_SAVE_KEY = 'survey_last_save';
-const FORM_COMPLETED_KEY = 'survey_form_completed';
-
-// Save form data to localStorage
+// Save form data to localStorage with auto-save indicator
 function saveFormData(data: any): void {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    localStorage.setItem(LAST_SAVE_KEY, new Date().toISOString());
+    saveToLocalStorage(STORAGE_KEY, data);
+    saveToLocalStorage(LAST_SAVE_KEY, new Date().toISOString());
     updateSaveIndicator('saved');
   } catch (error) {
     console.error('Error saving to localStorage:', error);
@@ -77,21 +33,13 @@ function saveFormData(data: any): void {
 
 // Load form data from localStorage
 function loadFormData(): any | null {
-  try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : null;
-  } catch (error) {
-    console.error('Error loading from localStorage:', error);
-    return null;
-  }
+  return loadFromLocalStorage(STORAGE_KEY);
 }
 
 // Clear form data from localStorage
 function clearFormData(): void {
   try {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(LAST_SAVE_KEY);
-    localStorage.removeItem(FORM_COMPLETED_KEY);
+    clearLocalStorageKeys(STORAGE_KEY, LAST_SAVE_KEY, FORM_COMPLETED_KEY);
     updateSaveIndicator('cleared');
   } catch (error) {
     console.error('Error clearing localStorage:', error);
@@ -100,17 +48,17 @@ function clearFormData(): void {
 
 // Get last save time
 function getLastSaveTime(): string | null {
-  return localStorage.getItem(LAST_SAVE_KEY);
+  return loadFromLocalStorage(LAST_SAVE_KEY);
 }
 
 // Mark form as completed
 function markFormCompleted(): void {
-  localStorage.setItem(FORM_COMPLETED_KEY, 'true');
+  saveToLocalStorage(FORM_COMPLETED_KEY, 'true');
 }
 
 // Check if form has been completed before
 function hasCompletedForm(): boolean {
-  return localStorage.getItem(FORM_COMPLETED_KEY) === 'true';
+  return loadFromLocalStorage(FORM_COMPLETED_KEY) === 'true';
 }
 
 // Show/hide tabs based on completion status

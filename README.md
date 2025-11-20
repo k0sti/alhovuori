@@ -1,385 +1,264 @@
-# Dynamic Questionnaire System
+# Alhovuori Community Project
 
-A flexible, JSON-configurable questionnaire system built with SurveyJS. Features conditional logic, user-added options, and real-time analytics.
+A monorepo containing web applications for the Alhovuori community project. Currently includes a dynamic questionnaire system built with SurveyJS.
 
-## Features
+## Project Structure
 
-- **Conditional Logic**: Questions appear/hide based on user answers
-- **User-Added Options**: Users can add their own choices to multiple-choice questions
-- **Interactive Results**: View all responses in a sortable, filterable table
-- **Visual Analytics**: Charts and graphs showing response distribution
-- **JSON Configuration**: Define entire forms in a JSON file
-- **Supabase Storage**: Responses saved to cloud database for public access
-- **Live Editing**: Modify form configuration and see changes instantly
+This is a monorepo with multiple packages:
+
+```
+alhovuori/
+├── packages/          # Application packages
+│   └── survey/        # Survey form application
+├── shared/            # Shared utilities and types
+├── scripts/           # Database management scripts
+└── docs/              # Documentation
+```
 
 ## Quick Start
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) (recommended) or Node.js
+- [Bun](https://bun.sh) v1.3+ (recommended) or Node.js v18+
+- [Supabase account](https://supabase.com) (for backend)
 
 ### Installation
 
 ```bash
-# Install dependencies
+# Clone the repository
+git clone https://github.com/alhovuori/alhovuori.git
+cd alhovuori
+
+# Install all dependencies
 bun install
 
-# Set up database (first time only)
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your Supabase credentials
+
+# Initialize database
 bun run setup-db
 
 # Start development server
 bun run dev
 ```
 
-The application will open at `http://localhost:5173`
+The survey app will open at http://localhost:5173
 
-## Database Setup
+## Available Commands
 
-This application uses Supabase to store survey responses. You need to set up the database table before first use.
+| Command | Description |
+|---------|-------------|
+| `bun install` | Install all dependencies |
+| `bun run dev` | Run survey app in dev mode |
+| `bun run build` | Build survey app for production |
+| `bun run preview` | Preview production build |
+| `bun run setup-db` | Initialize database |
+| `bun run view-results` | View survey responses via CLI |
 
-### Automatic Setup (Recommended)
+See [DEVELOPMENT.md](./docs/DEVELOPMENT.md) for more commands.
 
-```bash
-bun run setup-db
-```
+## Packages
 
-This will:
-1. Check if the table exists
-2. Show you the SQL to run in your Supabase dashboard
-3. Provide step-by-step instructions
+### Survey (`packages/survey`)
 
-### Manual Setup
+A flexible, JSON-configurable questionnaire system with:
 
-1. Open your Supabase dashboard
-2. Go to **SQL Editor**
-3. Copy and paste the contents of `supabase-schema.sql`
-4. Click **Run**
+- **Conditional Logic**: Questions appear/hide based on answers
+- **Auto-save**: Form progress saved to LocalStorage
+- **Cloud Storage**: Responses stored in Supabase
+- **Analytics Dashboard**: Visual charts and graphs
+- **Results Viewer**: Sortable, filterable data table
+- **Names List**: View survey participants
+- **Welcome Screen**: Project information and description
 
-### Database Commands
+**Technology:**
+- SurveyJS - Form engine
+- Vite - Build tool
+- TypeScript - Type safety
+- Supabase - Backend database
+- Tabulator Tables - Data display
 
-```bash
-bun run setup-db         # Check status and get setup instructions
-bun run setup-db:check   # Just check if table exists
-bun run setup-db:reset   # Clear all responses (keeps table structure)
-```
+## Documentation
 
-### Environment Variables
+- [**DEVELOPMENT.md**](./docs/DEVELOPMENT.md) - Setup and development workflow
+- [**ARCHITECTURE.md**](./docs/ARCHITECTURE.md) - System architecture and structure
+- [**DEPLOYMENT.md**](./docs/DEPLOYMENT.md) - Deployment instructions
+- [**PROPOSAL.md**](./PROPOSAL.md) - Monorepo migration plan
 
-Make sure your `.env` file contains:
+## Environment Variables
+
+Create a `.env` file in the root directory:
 
 ```env
-VITE_SUPABASE_URL=your-project-url
+VITE_SUPABASE_URL=https://your-project.supabase.co
 VITE_SUPABASE_API_KEY=your-anon-key
+VITE_SUPABASE_PASSWD=your-db-password
+VITE_BASE_PATH=/
 ```
 
-## Project Structure
+See [DEVELOPMENT.md](./docs/DEVELOPMENT.md#configure-environment-variables) for details.
 
-```
-vision/
-├── index.html           # Main HTML page
-├── survey-config.json   # Form configuration (edit this!)
-├── src/
-│   └── app.ts          # Application logic
-├── package.json
-└── README.md
-```
+## Development Workflow
 
-## Customizing Your Form
+### Working on the Survey App
 
-Edit `survey-config.json` to customize your questionnaire. The configuration uses SurveyJS JSON format.
+```bash
+# Navigate to package
+cd packages/survey
 
-### Basic Question Types
+# Start dev server
+bun run dev
 
-```json
-{
-  "type": "radiogroup",
-  "name": "question1",
-  "title": "Choose one option",
-  "choices": ["Option 1", "Option 2", "Option 3"]
-}
+# Build for production
+bun run build
 ```
 
-Available question types:
-- `radiogroup` - Single choice
-- `checkbox` - Multiple choice
-- `dropdown` - Dropdown menu
-- `tagbox` - Multi-select tags (users can add custom items)
-- `text` - Single line text
-- `comment` - Multi-line text
-- `rating` - Star/number rating
-- `boolean` - Yes/No
-- `matrix` - Grid of questions
-- `ranking` - Drag-to-rank items
+### Using Shared Code
 
-### Conditional Logic (Show/Hide Questions)
-
-Use the `visibleIf` property to show questions based on previous answers:
-
-```json
-{
-  "type": "comment",
-  "name": "followUp",
-  "visibleIf": "{question1} = 'Option 1'",
-  "title": "Tell us more..."
-}
-```
-
-**Conditional Operators:**
-- `=` Equal
-- `<>` Not equal
-- `>`, `<`, `>=`, `<=` Comparisons
-- `contains` String contains
-- `empty`, `notempty` Check if answered
-- `or`, `and` Combine conditions
-
-**Examples:**
-```json
-"visibleIf": "{age} >= 18"
-"visibleIf": "{customerType} = 'Yes' and {satisfaction} < 3"
-"visibleIf": "{products} contains 'Product A'"
-"visibleIf": "{email} notempty"
-```
-
-### User-Added Options
-
-Allow users to add custom choices:
-
-```json
-{
-  "type": "checkbox",
-  "name": "interests",
-  "title": "What are your interests?",
-  "choices": ["Sports", "Music", "Art"],
-  "showOtherItem": true,
-  "showSelectAllItem": true
-}
-```
-
-For fully dynamic user-added items, use `tagbox`:
-
-```json
-{
-  "type": "tagbox",
-  "name": "tags",
-  "title": "Type to add items",
-  "choices": ["Suggestion 1", "Suggestion 2"],
-  "allowClear": true
-}
-```
-
-### Pages and Progress Bar
-
-Organize questions into pages:
-
-```json
-{
-  "showProgressBar": "top",
-  "progressBarType": "buttons",
-  "pages": [
-    {
-      "name": "page1",
-      "title": "Personal Info",
-      "elements": [...]
-    },
-    {
-      "name": "page2",
-      "title": "Preferences",
-      "elements": [...]
-    }
-  ]
-}
-```
-
-### Required Questions
-
-```json
-{
-  "type": "text",
-  "name": "email",
-  "title": "Email",
-  "isRequired": true,
-  "validators": [
-    {
-      "type": "email"
-    }
-  ]
-}
-```
-
-Available validators:
-- `email` - Email format
-- `numeric` - Numbers only
-- `regex` - Custom regex pattern
-- `text` - Min/max length
-
-### Custom Completion Messages
-
-```json
-{
-  "completedHtml": "<h3>Thank you!</h3><p>Your response has been saved.</p>",
-  "completedHtmlOnCondition": [
-    {
-      "expression": "{satisfaction} >= 4",
-      "html": "<h3>Thanks for the great feedback!</h3>"
-    }
-  ]
-}
-```
-
-## Application Tabs
-
-### 1. Fill Form
-Interactive form where users submit responses. Features:
-- Real-time validation
-- Conditional question display
-- Progress tracking
-- Custom completion message
-
-### 2. View Results
-Table view of all responses with:
-- Sortable columns
-- Filtering capabilities
-- Export to CSV/Excel
-- Clear all responses button
-
-### 3. Analytics
-Visual analytics with:
-- Bar charts for multiple choice
-- Pie charts for single choice
-- Distribution graphs for ratings
-- Word clouds for text responses
-- Interactive filtering
-
-### 4. View/Edit JSON
-Live JSON editor to:
-- View current form configuration
-- Edit and test changes instantly
-- Copy configuration for backup
-- Learn JSON format by example
-
-## Advanced Configuration
-
-### Styling
-
-The form uses SurveyJS default theme v2. To customize:
+Import utilities and types from `@shared`:
 
 ```typescript
-// In src/app.ts
-import { StylesManager } from "survey-core";
-
-StylesManager.applyTheme("defaultV2");
+import { loadResponses, saveResponse } from '@shared/utils/supabase';
+import { STORAGE_KEY } from '@shared/utils/storage';
+import type { SurveyResponse } from '@shared/types/supabase';
 ```
 
-### Adding Custom Question Types
+### Database Management
 
-SurveyJS supports custom question components. See [SurveyJS documentation](https://surveyjs.io/form-library/documentation/customize-question-types/create-custom-question-type).
+```bash
+# View all responses
+bun run view-results
 
-### Backend Integration
+# View latest response
+bun run view-results:latest
 
-To save responses to a server instead of localStorage:
+# Check database status
+bun run setup-db:check
 
-```typescript
-// In src/app.ts, modify saveResponse():
-async function saveResponse(data: any): Promise<void> {
-  const response = await fetch('/api/responses', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data)
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to save response');
-  }
-}
-```
-
-### PDF Export
-
-To add PDF export functionality:
-
-```typescript
-import { SurveyPDF } from "survey-pdf";
-
-function exportToPDF() {
-  const surveyPDF = new SurveyPDF(surveyConfig);
-  surveyPDF.data = currentSurvey.data;
-  surveyPDF.save("survey-response.pdf");
-}
+# Reset database (destructive!)
+bun run setup-db:reset
 ```
 
 ## Building for Production
 
 ```bash
-# Create production build
+# Build survey app
 bun run build
 
 # Preview production build
 bun run preview
 ```
 
-Build output will be in the `dist/` directory.
+Output: `packages/survey/dist/`
 
-## Example Use Cases
+## Deployment
 
-### Customer Feedback Survey
-Questions about satisfaction, products used, and improvement suggestions with conditional follow-ups.
+The project automatically deploys to GitHub Pages when changes are pushed to `main`.
 
-### Event Registration
-Conditional dietary preferences, accessibility needs based on attendance confirmation.
+**Deployment URL:** https://alhovuori.github.io/alhovuori/
 
-### Job Application
-Show different questions based on position type, experience level, or location.
+See [DEPLOYMENT.md](./docs/DEPLOYMENT.md) for detailed deployment instructions.
 
-### Market Research
-Dynamic product interest questions based on demographics and usage patterns.
+## Adding New Applications
 
-### Health Questionnaire
-Follow-up questions based on symptoms or conditions reported.
+To add a new application to the monorepo:
 
-## Tips and Best Practices
+1. Create directory: `packages/new-app/`
+2. Add `package.json` with `@alhovuori/new-app` name
+3. Configure `tsconfig.json` extending root config
+4. Import shared code using `@shared/*` aliases
+5. Add deployment workflow
 
-1. **Start Simple**: Begin with basic questions, add conditional logic incrementally
-2. **Test Conditions**: Use the JSON editor to test different conditional scenarios
-3. **Mobile-Friendly**: SurveyJS is responsive by default
-4. **Question Naming**: Use descriptive names (e.g., `customerType` not `q1`)
-5. **Page Length**: Keep pages to 3-5 questions for better UX
-6. **Validation**: Add validators to ensure data quality
-7. **Progress Indication**: Use progress bar for multi-page forms
-8. **Clear Labels**: Write clear, concise question titles
+See [ARCHITECTURE.md](./docs/ARCHITECTURE.md#adding-new-applications) for details.
+
+## Features
+
+### Survey App Features
+
+- **Multi-page Forms**: Organize questions into pages
+- **Conditional Logic**: Show/hide based on answers
+- **Question Types**: Radio, checkbox, text, rating, matrix, and more
+- **Validation**: Required fields, email validation, custom rules
+- **Progress Bar**: Track completion
+- **Auto-save**: Never lose form progress
+- **Results Table**: Sort, filter, export data
+- **Analytics**: Visual charts and insights
+- **Mobile-friendly**: Responsive design
+
+## Customization
+
+### Survey Configuration
+
+Edit `packages/survey/survey-config.json` to customize the form:
+
+```json
+{
+  "pages": [
+    {
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "question1",
+          "title": "Your question here",
+          "choices": ["Option 1", "Option 2"],
+          "isRequired": true
+        }
+      ]
+    }
+  ]
+}
+```
+
+See [SurveyJS Documentation](https://surveyjs.io/form-library/documentation/overview) for more options.
+
+## Troubleshooting
+
+### Build Errors
+
+- Run `bun install` to update dependencies
+- Check TypeScript errors: Fix in your IDE
+- Verify import paths use `@shared/*` not relative paths
+
+### Database Connection
+
+- Verify `.env` file has correct Supabase credentials
+- Check Supabase project is active
+- Restart dev server after changing `.env`
+
+### Deployment Fails
+
+- Check GitHub Actions logs (Actions tab)
+- Verify GitHub Secrets are set correctly
+- See [DEPLOYMENT.md](./docs/DEPLOYMENT.md#troubleshooting)
 
 ## Resources
 
 - [SurveyJS Documentation](https://surveyjs.io/form-library/documentation/overview)
-- [JSON Schema Examples](https://surveyjs.io/form-library/examples/overview)
-- [Conditional Logic Guide](https://surveyjs.io/form-library/documentation/design-survey/conditional-logic)
-- [Question Types Reference](https://surveyjs.io/form-library/documentation/api-reference/question)
+- [Bun Documentation](https://bun.sh/docs)
+- [Vite Documentation](https://vitejs.dev/guide/)
+- [Supabase Documentation](https://supabase.com/docs)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
 
-## Troubleshooting
+## Contributing
 
-### Conditional logic not working
-- Check question `name` values match exactly (case-sensitive)
-- Use `{questionName}` format in conditions
-- Test with simple conditions first
-
-### Analytics not showing
-- Ensure responses exist (check "View Results" tab)
-- Some question types don't generate visualizations (e.g., open text)
-
-### JSON editor changes not applying
-- Validate JSON syntax (use online JSON validator)
-- Click "Apply Changes" button
-- Check browser console for errors
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/my-feature`
+3. Make your changes
+4. Commit: `git commit -m "Add feature"`
+5. Push: `git push origin feature/my-feature`
+6. Open a pull request
 
 ## License
 
-This project uses SurveyJS library. See [SurveyJS License](https://surveyjs.io/licensing) for details.
+This project uses the SurveyJS library. See [SurveyJS License](https://surveyjs.io/licensing) for details.
 
-## Next Steps
+## Support
 
-1. Customize `survey-config.json` for your use case
-2. Test conditional logic thoroughly
-3. Style the interface to match your brand
-4. Add backend integration if needed
-5. Deploy to production (Netlify, Vercel, etc.)
+- **Documentation**: See `docs/` directory
+- **Issues**: Open an issue on GitHub
+- **Discussions**: Use GitHub Discussions
 
-Happy surveying!
+---
+
+Built with ❤️ for the Alhovuori community

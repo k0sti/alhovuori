@@ -1,0 +1,13 @@
+{
+  "name": "@alhovuori/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./utils/*": "./utils/*.ts",
+    "./types/*": "./types/*.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.83.0"
+  }
+}

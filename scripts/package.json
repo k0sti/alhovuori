@@ -1,0 +1,16 @@
+{
+  "name": "@alhovuori/scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "export": "bun run export-results.ts",
+    "setup-db": "bun run setup-db.ts",
+    "setup-db:check": "bun run setup-db.ts --check",
+    "setup-db:reset": "bun run setup-db.ts --reset"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.83.0",
+    "postgres": "^3.4.7"
+  }
+}

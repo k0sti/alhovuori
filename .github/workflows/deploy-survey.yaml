@@ -1,4 +1,4 @@
-name: Build and Deploy to GitHub Pages
+name: Build and Deploy Survey to GitHub Pages
 
 on:
   # Allow manual triggering
@@ -7,6 +7,10 @@ on:
   # Run on commits to main branch
   push:
     branches: [ main ]
+    paths:
+      - 'packages/survey/**'
+      - 'shared/**'
+      - '.github/workflows/deploy-survey.yaml'
 
 # Allow GitHub Pages deployment
 permissions:
@@ -35,12 +39,12 @@ jobs:
     - name: Install dependencies
       run: bun install
 
-    - name: Build project
+    - name: Build survey app
       env:
         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
         VITE_SUPABASE_API_KEY: ${{ secrets.VITE_SUPABASE_API_KEY }}
         VITE_BASE_PATH: /alhovuori/
-      run: bun run build
+      run: bun run build:survey
 
     - name: Setup Pages
       uses: actions/configure-pages@v4
@@ -48,8 +52,8 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        # Upload dist directory
-        path: './dist'
+        # Upload survey dist directory
+        path: './packages/survey/dist'
 
     - name: Deploy to GitHub Pages
       id: deployment
