@@ -27,29 +27,6 @@
           "inputType": "email",
           "placeholder": "nimi@esimerkki.fi",
           "isRequired": true
-        },
-        {
-          "type": "radiogroup",
-          "name": "involvement_level",
-          "title": "Minkä tason sitoutumisella olet mukana tässä vaiheessa?",
-          "choices": [
-            {
-              "value": "committed",
-              "text": "✅ Vahvasti sitoutunut - haluan varmasti mukaan"
-            },
-            {
-              "value": "likely",
-              "text": "👍 Todennäköisesti mukana - riippuu yksityiskohdista"
-            },
-            {
-              "value": "interested",
-              "text": "🤔 Kiinnostunut - haluan kuulla lisää"
-            },
-            {
-              "value": "exploring",
-              "text": "🔍 Vasta tutustumassa - katsotaan miten kehittyy"
-            }
-          ]
         }
       ]
     },
@@ -618,6 +595,29 @@
       "title": "💭 Vapaa Sana",
       "description": "Lopuksi vielä tilaa avoimelle palautteelle",
       "elements": [
+        {
+          "type": "radiogroup",
+          "name": "involvement_level",
+          "title": "Minkä tason sitoutumisella olet mukana tässä vaiheessa?",
+          "choices": [
+            {
+              "value": "committed",
+              "text": "✅ Vahvasti sitoutunut - haluan varmasti mukaan"
+            },
+            {
+              "value": "likely",
+              "text": "👍 Todennäköisesti mukana - riippuu yksityiskohdista"
+            },
+            {
+              "value": "interested",
+              "text": "🤔 Kiinnostunut - haluan kuulla lisää"
+            },
+            {
+              "value": "exploring",
+              "text": "🔍 Vasta tutustumassa - katsotaan miten kehittyy"
+            }
+          ]
+        },
         {
           "type": "comment",
           "name": "free_wishes",
