@@ -281,6 +281,12 @@ function initSurvey(): void {
           indicator.textContent = '✓ Response submitted successfully';
           indicator.style.color = '#4caf50';
         }
+
+        // Switch to analytics tab
+        const analyticsTab = document.querySelector('[data-view="analytics"]') as HTMLElement;
+        if (analyticsTab) {
+          analyticsTab.click();
+        }
       }, 100);
     }
   });

@@ -32,7 +32,6 @@
           "type": "radiogroup",
           "name": "involvement_level",
           "title": "Minkä tason sitoutumisella olet mukana tässä vaiheessa?",
-          "isRequired": true,
           "choices": [
             {
               "value": "committed",
@@ -64,7 +63,6 @@
           "name": "activity_preferences",
           "title": "Minkätyyppistä toimintaa toivoisit Alhovuorelle?",
           "description": "Valitse viisi tärkeintä",
-          "isRequired": true,
           "choices": [
             {
               "value": "borderland",
@@ -163,7 +161,6 @@
           "type": "radiogroup",
           "name": "time_commitment",
           "title": "Kuinka paljon aikaa voisit käyttää hankkeeseen?",
-          "isRequired": true,
           "choices": [
             "Muutama tunti kuukaudessa (etäosallistuminen)",
             "Viikonloppu kuukaudessa paikan päällä",
@@ -178,7 +175,6 @@
           "name": "contribution_types",
           "title": "Millä tavoin haluaisit osallistua?",
           "description": "Valitse kaikki sopivat",
-          "isRequired": true,
           "choices": [
             {
               "value": "physical_work",
@@ -274,7 +270,6 @@
           "type": "radiogroup",
           "name": "investment_amount",
           "title": "Kuinka paljon olisit valmis sijoittamaan hankkeeseen?",
-          "isRequired": true,
           "choices": [
             {
               "value": "no_investment",
@@ -315,7 +310,6 @@
           "name": "return_expectations",
           "title": "Mitä odotat sijoitukseltasi?",
           "visibleIf": "{investment_amount} != 'no_investment'",
-          "isRequired": true,
           "choices": [
             {
               "value": "no_return",
@@ -355,7 +349,6 @@
           "type": "radiogroup",
           "name": "cabin_interest",
           "title": "Oletko kiinnostunut omasta tontista?",
-          "isRequired": true,
           "choices": [
             "Kyllä, kiinnostunut jos mahdollista",
             "Ehkä, riippuu hinnasta ja ehdoista",
@@ -495,7 +488,6 @@
           "type": "radiogroup",
           "name": "openness_level",
           "title": "Kuinka avointa toiminnan tulisi olla ulkopuolisille?",
-          "isRequired": true,
           "choices": [
             "Täysin avoin - kuka tahansa voi tulla käymään",
             "Tapahtumat avoimia, muuten rajattu yhteisölle",
