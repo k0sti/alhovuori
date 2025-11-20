@@ -1144,7 +1144,7 @@ async function initNames(): Promise<void> {
   namesElement.appendChild(namesList);
 }
 
-// Check URL parameters to show/hide Results tab
+// Check URL parameters to show/hide Results tab and handle direct view access
 function checkResultsAccess(): void {
   const params = new URLSearchParams(window.location.search);
   const resultsTab = document.querySelector('[data-view="results"]') as HTMLElement;
@@ -1156,6 +1156,12 @@ function checkResultsAccess(): void {
       resultsTab.style.display = 'none';
     }
   }
+}
+
+// Check if URL specifies a direct view to load
+function checkDirectView(): string | null {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('view');
 }
 
 // Setup start survey button
@@ -1227,8 +1233,45 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTabsVisibility();
   initTabs();
 
-  // Check if user has completed the form before
-  if (hasCompletedForm()) {
+  // Check for direct view parameter in URL
+  const directView = checkDirectView();
+
+  if (directView) {
+    // Direct view requested via URL parameter
+    const welcomeView = document.getElementById("welcomeView");
+    const targetView = document.getElementById(`${directView}View`);
+    const targetTab = document.querySelector(`[data-view="${directView}"]`) as HTMLElement;
+
+    if (targetView && targetTab && welcomeView) {
+      // Hide welcome, show target view
+      welcomeView.classList.remove("active");
+      targetView.classList.add("active");
+      targetTab.classList.add("active");
+
+      // Show tabs if needed
+      const tabs = document.getElementById('mainTabs');
+      if (tabs) {
+        tabs.style.display = 'flex';
+      }
+
+      // Initialize the appropriate view
+      switch (directView) {
+        case "form":
+          initSurvey();
+          break;
+        case "names":
+          initNames();
+          break;
+        case "results":
+          initResults();
+          break;
+        case "analytics":
+          initAnalytics();
+          break;
+      }
+    }
+  } else if (hasCompletedForm()) {
+    // Check if user has completed the form before
     // Show form view with tabs visible
     const welcomeView = document.getElementById("welcomeView");
     const formView = document.getElementById("formView");
