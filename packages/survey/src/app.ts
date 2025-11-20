@@ -1176,6 +1176,104 @@ function initTabs(): void {
 }
 
 // Initialize app
+// Countdown timer interval
+let countdownInterval: ReturnType<typeof setInterval> | null = null;
+
+// Update countdown timer every second
+function startCountdownTimer(): void {
+  const AUCTION_DATE = new Date('2025-11-24T18:00:00+02:00'); // Mon 24.11.2025 18:00 EEST
+
+  const updateCountdown = () => {
+    const timeToAuctionEl = document.getElementById('timeToAuction');
+    if (!timeToAuctionEl) return;
+
+    const now = new Date();
+    const diffMs = AUCTION_DATE.getTime() - now.getTime();
+
+    if (diffMs < 0) {
+      timeToAuctionEl.textContent = 'Huutokauppa on päättynyt.';
+      if (countdownInterval) {
+        clearInterval(countdownInterval);
+        countdownInterval = null;
+      }
+      return;
+    }
+
+    const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+    // Format: "3 päivää, 4 tuntia ja 8 minuuttia"
+    const parts: string[] = [];
+    if (days > 0) {
+      parts.push(`${days} ${days === 1 ? 'päivä' : 'päivää'}`);
+    }
+    if (hours > 0 || days > 0) {
+      parts.push(`${hours} ${hours === 1 ? 'tunti' : 'tuntia'}`);
+    }
+    parts.push(`${minutes} ${minutes === 1 ? 'minuutti' : 'minuuttia'}`);
+
+    timeToAuctionEl.textContent = parts.join(', ').replace(/,([^,]*)$/, ' ja$1');
+  };
+
+  // Update immediately and then every minute
+  updateCountdown();
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
+  countdownInterval = setInterval(updateCountdown, 60000); // Update every minute
+}
+
+// Calculate and update investment status on welcome page
+async function updateInvestmentStatus(): Promise<void> {
+  try {
+    // Debug: Check environment variables
+    console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
+    console.log('Supabase Key exists:', !!import.meta.env.VITE_SUPABASE_API_KEY);
+
+    // Fetch responses
+    const responses = await loadResponses();
+    console.log('Loaded responses:', responses.length);
+
+    // Calculate total investment
+    const investmentMap: { [key: string]: number } = {
+      '10k': 10000,
+      '15k': 15000,
+      '20k': 20000,
+      '30k': 30000,
+      '40k': 40000,
+      '50k': 50000,
+    };
+
+    let totalInvestment = 0;
+    responses.forEach((response: any) => {
+      const data = response.data || response;
+      const amount = data.investment_amount;
+      if (amount && investmentMap[amount]) {
+        totalInvestment += investmentMap[amount];
+      }
+    });
+
+    // Update current investment display
+    const currentInvestmentEl = document.getElementById('currentInvestment');
+    if (currentInvestmentEl) {
+      currentInvestmentEl.textContent = `${(totalInvestment / 1000).toFixed(0)}k€`;
+    }
+
+    // Start countdown timer
+    startCountdownTimer();
+
+  } catch (error) {
+    console.error('Error updating investment status:', error);
+    const currentInvestmentEl = document.getElementById('currentInvestment');
+    if (currentInvestmentEl) {
+      currentInvestmentEl.textContent = '0k€';
+    }
+    // Still start countdown even if investment fetch fails
+    startCountdownTimer();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   checkResultsAccess();
   updateTabsVisibility();
@@ -1239,5 +1337,15 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     // Show welcome view and setup start button
     setupStartSurveyButton();
+    // Update investment status on welcome page
+    updateInvestmentStatus();
+  }
+
+  // Also update when navigating to welcome view
+  const welcomeTab = document.querySelector('[data-view="welcome"]');
+  if (welcomeTab) {
+    welcomeTab.addEventListener('click', () => {
+      setTimeout(updateInvestmentStatus, 100);
+    });
   }
 });
