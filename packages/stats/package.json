@@ -1,0 +1,13 @@
+{
+  "name": "huutokaupat-scraper",
+  "version": "1.0.0",
+  "description": "Price tracker for huutokaupat.com auctions",
+  "scripts": {
+    "start": "bun --hot server.ts",
+    "dev": "bun --hot server.ts"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "bun-types": "latest"
+  }
+}
