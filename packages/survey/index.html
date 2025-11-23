@@ -113,22 +113,28 @@
 </head>
 <body>
     <div class="container">
-        <h1>Alhovuori Kysely</h1>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+            <h1 id="pageTitle">Alhovuori Kysely</h1>
+            <div id="languageSelector" style="display: flex; gap: 5px;">
+                <button class="lang-btn active" data-lang="fi" style="padding: 8px 12px; border: 2px solid #1976d2; background: #1976d2; color: white; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600;">FI</button>
+                <button class="lang-btn" data-lang="en" style="padding: 8px 12px; border: 2px solid #1976d2; background: white; color: #1976d2; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 600;">EN</button>
+            </div>
+        </div>
 
         <div class="tabs" id="mainTabs" style="display: none;">
-            <button class="tab" data-view="welcome">Welcome</button>
-            <button class="tab" data-view="form">Fill Form</button>
-            <button class="tab" data-view="names">Names</button>
-            <button class="tab" data-view="results" style="display: none;">View Results</button>
-            <button class="tab" data-view="analytics">Analytics</button>
+            <button class="tab" data-view="welcome" data-i18n="tabs.welcome">Welcome</button>
+            <button class="tab" data-view="form" data-i18n="tabs.form">Fill Form</button>
+            <button class="tab" data-view="names" data-i18n="tabs.names">Names</button>
+            <button class="tab" data-view="results" style="display: none;" data-i18n="tabs.results">View Results</button>
+            <button class="tab" data-view="analytics" data-i18n="tabs.analytics">Analytics</button>
         </div>
 
         <!-- Welcome View -->
         <div id="welcomeView" class="view active">
             <div style="max-width: 750px; margin: 0 auto;">
                 <div style="text-align: center; margin-bottom: 35px;">
-                    <h2 style="font-size: 2.5em; margin-bottom: 20px; color: #2d5016;">🏔️ Alhovuori</h2>
-                    <p style="font-size: 1.1em; line-height: 1.7; color: #444;">
+                    <h2 style="font-size: 2.5em; margin-bottom: 20px; color: #2d5016;" data-i18n="welcomeTitle">🏔️ Alhovuori</h2>
+                    <p id="welcomeDescription" style="font-size: 1.1em; line-height: 1.7; color: #444;">
                         50 hehtaaria, josta 20 metsää. Tunti Helsinkiin. Oma järvi. Vuorenrinne. Vanhasta navetasta rakentuva ravintola.
                         Yksi käytettävä ja toinen korjattava sauna järven rannalla. Leirintäalueen yhteissuihkut, vessat ja sauna.
                         Muutama laavu. Rempattava asuinrakennus. Vanha laskettelurinne ja pari hissiä, toisen saisi ehkä toimimaan.
@@ -138,24 +144,24 @@
 
                 <div style="background: #fffbeb; padding: 20px; border-radius: 8px; margin-bottom: 30px; border-left: 4px solid #f59e0b;">
                     <p style="line-height: 1.8; color: #555; margin-bottom: 15px;">
-                        <strong>Hihaveikkaus arvosta 200-300k€</strong>, josta metsässä yli puolet. Haetaan tekijöitä ja yhteistyötahoja, sekä osakkaita 10-50k€ osuudella.
-                        <span id="currentInvestment">Ladataan...</span> koossa.
+                        <strong id="auctionInfo"></strong>
+                        <span id="currentInvestment" data-i18n="loading">Ladataan...</span> <span id="currentInvestmentLabel"></span>.
                     </p>
-                    <p id="timeToAuction" style="line-height: 1.8; color: #555; margin-bottom: 15px; font-size: 1.3em; font-weight: 600; font-family: monospace; text-align: center;">
+                    <p id="timeToAuction" style="line-height: 1.8; color: #555; margin-bottom: 15px; font-size: 1.3em; font-weight: 600; font-family: monospace; text-align: center;" data-i18n="timeToAuctionCalculating">
                         Lasketaan aikaa...
                     </p>
                     <p style="line-height: 1.8; color: #555; margin: 0;">
-                        Lisätietoja kohteesta: <a href="https://huutokaupat.com/kohde/5812149" target="_blank" rel="noopener noreferrer" style="color: #d97706; font-weight: 600; text-decoration: underline;">Huutokaupat.com - Alhovuori</a>
+                        <span id="moreInfoLabel"></span> <a href="https://huutokaupat.com/kohde/5812149" target="_blank" rel="noopener noreferrer" style="color: #d97706; font-weight: 600; text-decoration: underline;" id="moreInfoLink">Huutokaupat.com - Alhovuori</a>
                     </p>
                     <p style="line-height: 1.8; color: #555; margin: 10px 0 0 0;">
-                        Tiedotus ryhmän WhatsApp-kanavalla: <a href="https://chat.whatsapp.com/FcE5dvDPMjB6xnqtJ8qTwC" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600; text-decoration: underline;">Liity WhatsApp-ryhmään</a>
+                        <span id="whatsappLabel"></span> <a href="https://chat.whatsapp.com/FcE5dvDPMjB6xnqtJ8qTwC" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 600; text-decoration: underline;" id="whatsappLink">Liity WhatsApp-ryhmään</a>
                     </p>
                 </div>
 
                 <div style="background: #f0fdf4; padding: 25px; border-radius: 8px; margin-bottom: 35px; border-left: 4px solid #16a34a;">
                     <p style="line-height: 1.8; color: #555; margin: 0;">
-                        <strong>Kesto:</strong> 15-25 minuuttia<br>
-                        <strong>Automaattitallennus:</strong> Voit täyttää useassa erässä - vastaukset tallentuvat selaimeen automaattisesti
+                        <strong id="surveyDurationLabel"></strong> <span id="surveyDurationValue"></span><br>
+                        <strong id="autoSaveLabel"></strong> <span id="autoSaveDescription"></span>
                     </p>
                 </div>
 
@@ -183,8 +189,8 @@
         <!-- Names View -->
         <div id="namesView" class="view">
             <div class="info">
-                <h3>Participant Names</h3>
-                <p>List of all participants who have submitted the survey.</p>
+                <h3 data-i18n="namesView.title">Participant Names</h3>
+                <p data-i18n="namesView.description">List of all participants who have submitted the survey.</p>
             </div>
             <div id="namesElement"></div>
         </div>
@@ -192,8 +198,8 @@
         <!-- Results View -->
         <div id="resultsView" class="view">
             <div class="info">
-                <h3>View All Responses</h3>
-                <p>See all submitted responses in a table format.</p>
+                <h3 data-i18n="resultsView.title">View All Responses</h3>
+                <p data-i18n="resultsView.description">See all submitted responses in a table format.</p>
             </div>
             <div id="resultsElement"></div>
         </div>
@@ -201,8 +207,8 @@
         <!-- Analytics View -->
         <div id="analyticsView" class="view">
             <div class="info">
-                <h3>Visual Analytics</h3>
-                <p>Interactive charts and graphs showing response distribution (excluding personal information).</p>
+                <h3 data-i18n="analyticsView.title">Visual Analytics</h3>
+                <p data-i18n="analyticsView.description">Interactive charts and graphs showing response distribution (excluding personal information).</p>
             </div>
             <div id="analyticsElement"></div>
         </div>

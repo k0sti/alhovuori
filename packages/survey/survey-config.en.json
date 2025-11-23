@@ -1,0 +1,640 @@
+{
+  "title": "Alhovuori Community Project - Survey",
+  "description": "Welcome to Alhovuori community project planning! 🌲 This survey helps us map out shared visions, goals, and participation interest. Your answers help us build a community that meets everyone's wishes.",
+  "logo": "🏔️",
+  "logoPosition": "right",
+  "showProgressBar": "top",
+  "progressBarType": "buttons",
+  "showQuestionNumbers": "on",
+  "goNextPageAutomatic": false,
+  "pages": [
+    {
+      "name": "intro",
+      "title": "👋 Basic Information",
+      "description": "Let's start with a few basic questions",
+      "elements": [
+        {
+          "type": "text",
+          "name": "name",
+          "title": "Name",
+          "placeholder": "Your name",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "contact",
+          "title": "Email",
+          "inputType": "email",
+          "placeholder": "name@example.com",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "activities",
+      "title": "🌱 Activity Visions",
+      "description": "What do you hope will happen at Alhovuori?",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "activity_preferences",
+          "title": "What kind of activities would you like for Alhovuori?",
+          "description": "Select the five most important ones",
+          "choices": [
+            {
+              "value": "borderland",
+              "text": "🔥 Borderland-style shared use for burners and other like-minded people"
+            },
+            {
+              "value": "restaurant",
+              "text": "🍽️ Restaurant or cafe"
+            },
+            {
+              "value": "camping",
+              "text": "🏕️ Summer camping services"
+            },
+            {
+              "value": "festivals",
+              "text": "🎪 Summer festivals"
+            },
+            {
+              "value": "events",
+              "text": "🎉 Events (workshops, retreats, themed weekends)"
+            },
+            {
+              "value": "venue_rental",
+              "text": "🏛️ Event and celebration venue rental"
+            },
+            {
+              "value": "living",
+              "text": "🏡 Housing (permanent or weekend)"
+            },
+            {
+              "value": "farming",
+              "text": "🚜 Agriculture and food production"
+            },
+            {
+              "value": "free_city",
+              "text": "🏛️ Free city / independent village community"
+            },
+            {
+              "value": "remote_work",
+              "text": "💻 Remote work spaces and co-working"
+            },
+            {
+              "value": "permaculture",
+              "text": "🌿 Permaculture activities"
+            },
+            {
+              "value": "storage",
+              "text": "🏭 Storage hall and production spaces"
+            },
+            {
+              "value": "arts_crafts",
+              "text": "🎨 Workshops and spaces for various arts and crafts"
+            },
+            {
+              "value": "forest_protection",
+              "text": "🌲 Forest protection and biodiversity"
+            },
+            {
+              "value": "startup_incubator",
+              "text": "🚀 Startup and artist incubator"
+            },
+            {
+              "value": "education",
+              "text": "📚 Education and learning environment"
+            },
+            {
+              "value": "wellness",
+              "text": "🧘 Wellness and retreats"
+            },
+            {
+              "value": "other",
+              "text": "💡 Something else (tell us in additional info)"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "first_year_focus",
+          "title": "What activities would you focus on during the first year?",
+          "placeholder": "E.g. 'First renovate basic facilities, then organize a couple of events in summer...'"
+        },
+        {
+          "type": "comment",
+          "name": "inspiration",
+          "title": "What inspires you about Alhovuori?",
+          "placeholder": "Tell us freely what excites and gives you hope about this project..."
+        }
+      ]
+    },
+    {
+      "name": "participation",
+      "title": "🛠️ Participation and Contribution",
+      "description": "How do you want to participate in building the community?",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "time_commitment",
+          "title": "How much time could you dedicate to the project?",
+          "choices": [
+            "A few hours per month (remote participation)",
+            "A weekend per month on-site",
+            "Weekly participation",
+            "Part-time (1-3 days per week)",
+            "Almost full-time / living on-site",
+            "Varies seasonally"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "contribution_types",
+          "title": "How would you like to participate?",
+          "description": "Select all that apply",
+          "choices": [
+            {
+              "value": "physical_work",
+              "text": "🔨 Community work and physical labor"
+            },
+            {
+              "value": "organizing_events",
+              "text": "🎯 Event organizing"
+            },
+            {
+              "value": "maintenance",
+              "text": "🔧 Maintenance and upkeep"
+            },
+            {
+              "value": "administration",
+              "text": "📋 Administration and bookkeeping"
+            },
+            {
+              "value": "marketing",
+              "text": "📢 Marketing and communications"
+            },
+            {
+              "value": "design",
+              "text": "🎨 Planning and design"
+            },
+            {
+              "value": "it_tech",
+              "text": "💻 IT and technology"
+            },
+            {
+              "value": "gardening",
+              "text": "🌱 Gardening and permaculture"
+            },
+            {
+              "value": "building",
+              "text": "🏗️ Construction and renovation"
+            },
+            {
+              "value": "teaching",
+              "text": "👨‍🏫 Teaching and workshops"
+            },
+            {
+              "value": "cooking",
+              "text": "👨‍🍳 Cooking and catering"
+            },
+            {
+              "value": "business_dev",
+              "text": "💼 Business development"
+            },
+            {
+              "value": "legal",
+              "text": "⚖️ Legal matters and contracts"
+            },
+            {
+              "value": "financial",
+              "text": "💰 Finance and financial planning"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "skills",
+          "title": "What skills do you have that you could offer the community?",
+          "placeholder": "E.g. 'I'm a carpenter', 'I know permaculture design', 'I do graphic design'..."
+        },
+        {
+          "type": "radiogroup",
+          "name": "business_interest",
+          "title": "Would you like to conduct business at Alhovuori?",
+          "choices": [
+            "Yes, I would actively like to run a business",
+            "Yes, part-time or seasonally",
+            "Maybe in the future",
+            "Not myself, but I want to support others' businesses",
+            "No, I want to participate in other ways"
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "business_ideas",
+          "title": "If you have business ideas for Alhovuori, tell us about them",
+          "visibleIf": "{business_interest} = 'Yes, I would actively like to run a business' or {business_interest} = 'Yes, part-time or seasonally' or {business_interest} = 'Maybe in the future'",
+          "placeholder": "E.g. 'I'd like to run a summer cafe', 'I could organize yoga retreats'..."
+        }
+      ]
+    },
+    {
+      "name": "investment",
+      "title": "💰 Investment and Usage",
+      "description": "Financial participation and facility use",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "investment_amount",
+          "title": "How much would you be willing to invest in the project?",
+          "choices": [
+            {
+              "value": "no_investment",
+              "text": "I won't invest money, but want to participate in other ways"
+            },
+            {
+              "value": "10k",
+              "text": "10,000€"
+            },
+            {
+              "value": "15k",
+              "text": "15,000€"
+            },
+            {
+              "value": "20k",
+              "text": "20,000€"
+            },
+            {
+              "value": "30k",
+              "text": "30,000€"
+            },
+            {
+              "value": "40k",
+              "text": "40,000€"
+            },
+            {
+              "value": "50k",
+              "text": "50,000€"
+            },
+            {
+              "value": "unclear",
+              "text": "I'm not sure yet"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "return_expectations",
+          "title": "What do you expect from your investment?",
+          "visibleIf": "{investment_amount} != 'no_investment'",
+          "choices": [
+            {
+              "value": "no_return",
+              "text": "No return expectations - the goal is to create value-based activities"
+            },
+            {
+              "value": "return_investment",
+              "text": "Investment back over the long term (~10y) with reasonable returns (e.g. 2x)"
+            },
+            {
+              "value": "business_profit",
+              "text": "Profitable business and continuous cash flow"
+            },
+            {
+              "value": "mixed",
+              "text": "Combination: value activities + reasonable long-term returns"
+            },
+            {
+              "value": "other",
+              "text": "Something else (tell us in additional info)"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "payment_timeline",
+          "title": "When would you be able to invest?",
+          "visibleIf": "{investment_amount} != 'no_investment' and {investment_amount} != 'unclear'",
+          "choices": [
+            "As soon as the company is established",
+            "Within 1-3 months",
+            "Within 3-6 months",
+            "Later"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "cabin_interest",
+          "title": "Are you interested in your own plot?",
+          "choices": [
+            "Yes, interested if possible",
+            "Maybe, depends on price and terms",
+            "No own plot, but shared use is enough",
+            "No interest in a plot"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "cabin_usage",
+          "title": "What would you use the cabin for?",
+          "description": "You can select multiple",
+          "visibleIf": "{cabin_interest} = 'Yes, interested if possible' or {cabin_interest} = 'Maybe, depends on price and terms'",
+          "choices": [
+            "Weekend home",
+            "Summer home",
+            "Permanent residence",
+            "Remote work space",
+            "Rental to others",
+            "Personal retreat",
+            "Art or work space"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "space_needs",
+          "title": "What shared spaces would you like for Alhovuori?",
+          "description": "Select all that interest you",
+          "choices": [
+            "Remote work spaces / co-working",
+            "Workshops and craft spaces",
+            "Storage spaces",
+            "Sauna",
+            "Shared kitchen",
+            "Event spaces",
+            "Sports facilities",
+            "Community garden plots",
+            "Guest rooms"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "visit_frequency",
+          "title": "How often do you estimate using Alhovuori facilities?",
+          "choices": [
+            "I would live on-site permanently",
+            "Weekly",
+            "A couple times per month",
+            "Once a month",
+            "Seasonally (e.g. in summer)",
+            "Only during events",
+            "Rarely"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "development",
+      "title": "🏗️ Development and Investments",
+      "description": "Views on area development",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "priority_projects",
+          "title": "Which development projects were most important",
+          "description": "Select at most five",
+          "choices": [
+            {
+              "value": "basic_renovation",
+              "text": "Basic building renovation"
+            },
+            {
+              "value": "restaurant_renovation",
+              "text": "Restaurant renovation and construction"
+            },
+            {
+              "value": "scrap_cleanup",
+              "text": "Scrap metal removal and cleanup"
+            },
+            {
+              "value": "solar_energy",
+              "text": "Solar panels and renewable energy"
+            },
+            {
+              "value": "common_spaces",
+              "text": "Building shared spaces"
+            },
+            {
+              "value": "sauna",
+              "text": "Sauna construction/renovation"
+            },
+            {
+              "value": "remote_work_spaces",
+              "text": "Creating remote work spaces"
+            },
+            {
+              "value": "event_areas",
+              "text": "Building event areas"
+            },
+            {
+              "value": "permaculture",
+              "text": "Starting garden and permaculture"
+            },
+            {
+              "value": "cabin_zoning",
+              "text": "Cabin plot zoning"
+            },
+            {
+              "value": "storage_hall",
+              "text": "Building storage hall"
+            }
+          ]
+        },
+        {
+          "type": "rating",
+          "name": "renovation_participation",
+          "title": "How much would you like to participate in physical construction and renovations?",
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "Not at all, I'd rather pay",
+          "maxRateDescription": "Very much, I love building"
+        },
+        {
+          "type": "comment",
+          "name": "longterm_vision",
+          "title": "What does your dream Alhovuori look like 10 years from now?",
+          "placeholder": "Tell us freely what the place looks like and what happens there in 2035..."
+        }
+      ]
+    },
+    {
+      "name": "community_life",
+      "title": "👥 Community Life",
+      "description": "What kind of community do you want to build?",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "openness_level",
+          "title": "How open should the activities be to outsiders?",
+          "choices": [
+            "Fully open - anyone can visit",
+            "Events open, otherwise restricted to community",
+            "Flexible model depending on activity"
+          ]
+        },
+        {
+          "type": "rating",
+          "name": "governance_participation",
+          "title": "How actively would you like to participate in governance and decision-making?",
+          "rateMin": 1,
+          "rateMax": 5,
+          "minRateDescription": "I trust others' decisions",
+          "maxRateDescription": "I want to be actively involved in decision-making"
+        },
+        {
+          "type": "radiogroup",
+          "name": "conflict_resolution",
+          "title": "How would you like conflicts to be resolved?",
+          "choices": [
+            "Open discussion and dialogue",
+            "Mediation with external facilitator",
+            "Community voting",
+            "Board decides",
+            "Different methods for different situations"
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "social_events",
+          "title": "What kind of community events would you like?",
+          "description": "Select what interests you",
+          "choices": [
+            "Regular shared dinners",
+            "Workshops and learning events",
+            "Parties and holidays together",
+            "Community work events",
+            "Sauna evenings",
+            "Regular community meetings",
+            "Retreats and quiet time",
+            "Festivals and larger events",
+            "Minimal - I mainly want my own peace"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "concerns",
+      "title": "⚠️ Concerns and Risks",
+      "description": "What things concern you?",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "main_concerns",
+          "title": "What things worry you about the project?",
+          "description": "Select all that apply",
+          "choices": [
+            {
+              "value": "financial_risk",
+              "text": "💰 Financial risk"
+            },
+            {
+              "value": "running_costs",
+              "text": "💸 Running costs may be too high"
+            },
+            {
+              "value": "time_commitment",
+              "text": "⏰ Time commitment may be too large"
+            },
+            {
+              "value": "conflicts",
+              "text": "😤 Potential conflicts in the community"
+            },
+            {
+              "value": "decision_making",
+              "text": "🤔 Decision-making may be difficult"
+            },
+            {
+              "value": "legal_issues",
+              "text": "⚖️ Legal matters and responsibilities"
+            },
+            {
+              "value": "neighbor_conflicts",
+              "text": "🏘️ Conflicts with neighbors"
+            },
+            {
+              "value": "maintenance",
+              "text": "🔧 Maintenance workload"
+            },
+            {
+              "value": "isolation",
+              "text": "🚗 Distance and isolation"
+            },
+            {
+              "value": "commitment",
+              "text": "🔒 Too strong commitment"
+            },
+            {
+              "value": "vision_mismatch",
+              "text": "🎯 Visions conflict"
+            },
+            {
+              "value": "profitability",
+              "text": "📊 Project not financially viable"
+            },
+            {
+              "value": "other",
+              "text": "❓ Other (tell us freely)"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "deal_breakers",
+          "title": "Are there any absolute 'deal breakers' - things that would make you withdraw from the project?",
+          "placeholder": "E.g. 'If forest is clear-cut', 'If running costs exceed X€/month'..."
+        },
+        {
+          "type": "comment",
+          "name": "must_haves",
+          "title": "What things are absolute requirements for you for a successful project?",
+          "placeholder": "E.g. 'Transparent finances', 'Ecological operations', 'Good community spirit'..."
+        }
+      ]
+    },
+    {
+      "name": "open_feedback",
+      "title": "💭 Open Feedback",
+      "description": "Finally, space for open feedback",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "involvement_level",
+          "title": "What level of commitment are you at this stage?",
+          "choices": [
+            {
+              "value": "committed",
+              "text": "✅ Strongly committed - I definitely want to join"
+            },
+            {
+              "value": "likely",
+              "text": "👍 Probably joining - depends on details"
+            },
+            {
+              "value": "interested",
+              "text": "🤔 Interested - want to hear more"
+            },
+            {
+              "value": "exploring",
+              "text": "🔍 Just exploring - let's see how it develops"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "free_wishes",
+          "title": "Any other wishes, thoughts or ideas about the place?",
+          "placeholder": "Tell us freely whatever comes to mind..."
+        }
+      ]
+    }
+  ],
+  "showCompletedPage": true,
+  "completedHtml": "<div style='text-align: center; padding: 2em;'><h2>🎉 Thank you for your answers!</h2><p>Your answers help us build a community that meets everyone's wishes and needs.</p><h3>Next steps:</h3><ol style='text-align: left; display: inline-block;'><li>We'll analyze the answers and map shared goals</li><li>Organize a joint meeting to refine the vision</li><li>Draft a detailed plan and shareholders' agreement</li></ol><p><strong>We'll be in touch soon! 🌲</strong></p></div>",
+  "completedHtmlOnCondition": [
+    {
+      "expression": "{involvement_level} = 'committed'",
+      "html": "<div style='text-align: center; padding: 2em;'><h2>🎉 Thank you for your strong commitment!</h2><p>It's wonderful that you're strongly committed to building the Alhovuori community!</p><h3>Next steps:</h3><ol style='text-align: left; display: inline-block;'><li>We'll analyze the answers and map shared goals</li><li>Organize a joint meeting to refine the vision</li><li>Draft a detailed plan and shareholders' agreement</li></ol><p><strong>We'll be in touch very soon! 🌲</strong></p></div>"
+    }
+  ],
+  "showPreviewBeforeComplete": "showAnsweredQuestions",
+  "locale": "en"
+}

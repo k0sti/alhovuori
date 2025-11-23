@@ -1,0 +1,80 @@
+{
+  "pageTitle": "Alhovuori Survey",
+  "welcomeTitle": "Alhovuori",
+  "welcomeDescription": "50 hectares, 20 of which are forest. One hour to Helsinki. Own lake. Mountain slope. Restaurant being built from an old barn. One usable and one renovated sauna by the lake. Campsite's shared showers, toilets and sauna. A few lean-tos. A residential building to be renovated. An old ski slope and a couple of lifts, one might work. Fully ready for summer camps with many possibilities.",
+  "auctionInfo": "Estimated value 200-300k€, over half of which is forest. Looking for doers and partners, as well as shareholders with 10-50k€ shares.",
+  "currentInvestment": "collected",
+  "loading": "Loading...",
+  "timeToAuctionCalculating": "Calculating time...",
+  "auctionEnded": "The auction has ended.",
+  "moreInfoLabel": "More information about the property:",
+  "moreInfoLink": "Huutokaupat.com - Alhovuori",
+  "whatsappLabel": "Updates on WhatsApp group:",
+  "whatsappLink": "Join WhatsApp Group",
+  "surveyDuration": "Duration:",
+  "surveyDurationValue": "15-25 minutes",
+  "autoSaveLabel": "Auto-save:",
+  "autoSaveDescription": "You can fill in multiple sessions - answers are automatically saved to your browser",
+  "startSurveyButton": "Start Survey",
+  "tabs": {
+    "welcome": "Welcome",
+    "form": "Fill Form",
+    "names": "Names",
+    "results": "View Results",
+    "analytics": "Analytics"
+  },
+  "saveIndicator": {
+    "saving": "💾 Saving...",
+    "saved": "✓ Saved",
+    "error": "⚠ Save failed",
+    "cleared": "🗑 Cleared",
+    "loaded": "📂 Loaded saved progress from"
+  },
+  "clearFormButton": "🗑 Clear Form",
+  "clearFormConfirm": "Are you sure you want to clear all form data? This will return you to the welcome screen.",
+  "formCleared": "Form has been cleared! You'll see the welcome screen again.",
+  "navigationButtons": {
+    "previous": "Previous",
+    "next": "Next",
+    "complete": "Complete"
+  },
+  "completionMessage": "Thank you! Your response has been saved.\n\nYou can now:\n• View all participant names in the 'Names' tab\n• See analytics in the 'Analytics' tab\n• Edit your response and resubmit\n• Click 'Clear Form' to start a new response",
+  "responseSubmitted": "✓ Response submitted successfully",
+  "namesView": {
+    "title": "Participant Names",
+    "description": "List of all participants who have submitted the survey.",
+    "loading": "Loading names...",
+    "noResponses": "No responses yet. Fill out the form first!",
+    "totalParticipants": "Total Participants:",
+    "noNames": "No names provided in responses.",
+    "anonymous": "Anonymous"
+  },
+  "resultsView": {
+    "title": "View All Responses",
+    "description": "See all submitted responses in a table format.",
+    "loading": "Loading responses...",
+    "noResponses": "No responses yet. Fill out the form first!",
+    "totalResponses": "Total Responses:",
+    "downloadCSV": "Download CSV"
+  },
+  "analyticsView": {
+    "title": "Visual Analytics",
+    "description": "Interactive charts and graphs showing response distribution (excluding personal information).",
+    "loading": "Loading analytics...",
+    "noResponses": "No responses yet. Fill out the form to see analytics!",
+    "analyzing": "Analyzing"
+  },
+  "timeUnits": {
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "hours": "hours",
+    "minute": "minute",
+    "minutes": "minutes"
+  },
+  "checkboxOther": "Other (please specify)",
+  "tagboxPlaceholder": "Type and press Enter to add",
+  "tagboxSuggestions": "Suggestions:",
+  "unsupportedQuestionType": "Question type \"{type}\" not yet supported in simple renderer",
+  "noDataToDownload": "No data to download"
+}

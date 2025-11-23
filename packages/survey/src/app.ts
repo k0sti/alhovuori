@@ -1,6 +1,5 @@
 import { Model } from "survey-core";
 import "survey-core/survey-core.min.css";
-import surveyConfig from "../survey-config.json";
 import { Tabulator } from "survey-analytics/survey.analytics.tabulator";
 import { VisualizationPanel } from "survey-analytics";
 import "survey-analytics/survey.analytics.min.css";
@@ -14,10 +13,122 @@ import {
   loadFromLocalStorage,
   clearLocalStorageKeys
 } from "@shared/utils/storage";
+import { i18n, type Language } from "./i18n";
 
 // Initialize survey
 let currentSurvey: Model | null = null;
 let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+
+// Update all translations in the DOM
+function updateTranslations(): void {
+  // Update page title
+  document.title = i18n.t('pageTitle');
+  const pageTitleEl = document.getElementById('pageTitle');
+  if (pageTitleEl) pageTitleEl.textContent = i18n.t('pageTitle');
+
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    if (key) {
+      el.textContent = i18n.t(key);
+    }
+  });
+
+  // Update welcome view specific elements
+  const welcomeDesc = document.getElementById('welcomeDescription');
+  if (welcomeDesc) welcomeDesc.textContent = i18n.t('welcomeDescription');
+
+  const auctionInfo = document.getElementById('auctionInfo');
+  if (auctionInfo) auctionInfo.textContent = i18n.t('auctionInfo');
+
+  const currentInvestmentLabel = document.getElementById('currentInvestmentLabel');
+  if (currentInvestmentLabel) currentInvestmentLabel.textContent = i18n.t('currentInvestment');
+
+  const moreInfoLabel = document.getElementById('moreInfoLabel');
+  if (moreInfoLabel) moreInfoLabel.textContent = i18n.t('moreInfoLabel');
+
+  const moreInfoLink = document.getElementById('moreInfoLink');
+  if (moreInfoLink) moreInfoLink.textContent = i18n.t('moreInfoLink');
+
+  const whatsappLabel = document.getElementById('whatsappLabel');
+  if (whatsappLabel) whatsappLabel.textContent = i18n.t('whatsappLabel');
+
+  const whatsappLink = document.getElementById('whatsappLink');
+  if (whatsappLink) whatsappLink.textContent = i18n.t('whatsappLink');
+
+  const surveyDurationLabel = document.getElementById('surveyDurationLabel');
+  if (surveyDurationLabel) surveyDurationLabel.textContent = i18n.t('surveyDuration');
+
+  const surveyDurationValue = document.getElementById('surveyDurationValue');
+  if (surveyDurationValue) surveyDurationValue.textContent = i18n.t('surveyDurationValue');
+
+  const autoSaveLabel = document.getElementById('autoSaveLabel');
+  if (autoSaveLabel) autoSaveLabel.textContent = i18n.t('autoSaveLabel');
+
+  const autoSaveDescription = document.getElementById('autoSaveDescription');
+  if (autoSaveDescription) autoSaveDescription.textContent = i18n.t('autoSaveDescription');
+
+  const startSurveyBtn = document.getElementById('startSurveyBtn');
+  if (startSurveyBtn) startSurveyBtn.textContent = i18n.t('startSurveyButton');
+
+  const clearFormBtn = document.getElementById('clearFormBtn');
+  if (clearFormBtn) clearFormBtn.innerHTML = i18n.t('clearFormButton');
+}
+
+// Initialize language selector
+function initLanguageSelector(): void {
+  const langButtons = document.querySelectorAll('.lang-btn');
+  const currentLang = i18n.getLanguage();
+
+  // Set active state based on current language
+  langButtons.forEach(btn => {
+    const lang = btn.getAttribute('data-lang') as Language;
+    if (lang === currentLang) {
+      btn.classList.add('active');
+      (btn as HTMLElement).style.background = '#1976d2';
+      (btn as HTMLElement).style.color = 'white';
+    } else {
+      btn.classList.remove('active');
+      (btn as HTMLElement).style.background = 'white';
+      (btn as HTMLElement).style.color = '#1976d2';
+    }
+  });
+
+  // Add click handlers
+  langButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang') as Language;
+      i18n.setLanguage(lang);
+
+      // Update button styles
+      langButtons.forEach(b => {
+        const bLang = b.getAttribute('data-lang');
+        if (bLang === lang) {
+          b.classList.add('active');
+          (b as HTMLElement).style.background = '#1976d2';
+          (b as HTMLElement).style.color = 'white';
+        } else {
+          b.classList.remove('active');
+          (b as HTMLElement).style.background = 'white';
+          (b as HTMLElement).style.color = '#1976d2';
+        }
+      });
+
+      // Update all translations
+      updateTranslations();
+
+      // Reinitialize survey with new language config
+      if (currentSurvey && document.getElementById('formView')?.classList.contains('active')) {
+        initSurvey();
+      }
+
+      // Update countdown if on welcome view
+      if (document.getElementById('welcomeView')?.classList.contains('active')) {
+        updateInvestmentStatus();
+      }
+    });
+  });
+}
 
 // Save form data to localStorage with auto-save indicator
 function saveFormData(data: any): void {
@@ -80,22 +191,22 @@ function updateSaveIndicator(status: 'saving' | 'saved' | 'error' | 'cleared'): 
 
   switch (status) {
     case 'saving':
-      indicator.textContent = '💾 Saving...';
+      indicator.textContent = i18n.t('saveIndicator.saving');
       indicator.style.color = '#666';
       break;
     case 'saved':
-      indicator.textContent = '✓ Saved';
+      indicator.textContent = i18n.t('saveIndicator.saved');
       indicator.style.color = '#4caf50';
       setTimeout(() => {
         indicator.textContent = '';
       }, 2000);
       break;
     case 'error':
-      indicator.textContent = '⚠ Save failed';
+      indicator.textContent = i18n.t('saveIndicator.error');
       indicator.style.color = '#f44336';
       break;
     case 'cleared':
-      indicator.textContent = '🗑 Cleared';
+      indicator.textContent = i18n.t('saveIndicator.cleared');
       indicator.style.color = '#666';
       setTimeout(() => {
         indicator.textContent = '';
@@ -171,7 +282,8 @@ function initSurvey(): void {
     currentSurvey.clear(false, true);
   }
 
-  // Create survey model
+  // Create survey model with current language config
+  const surveyConfig = i18n.getSurveyConfig();
   currentSurvey = new Model(surveyConfig);
 
   // Load saved data from localStorage
@@ -186,7 +298,7 @@ function initSurvey(): void {
       const lastSaveDate = new Date(lastSave);
       const indicator = document.getElementById('saveIndicator');
       if (indicator) {
-        indicator.textContent = `📂 Loaded saved progress from ${lastSaveDate.toLocaleString()}`;
+        indicator.textContent = `${i18n.t('saveIndicator.loaded')} ${lastSaveDate.toLocaleString()}`;
         indicator.style.color = '#1976d2';
         setTimeout(() => {
           indicator.textContent = '';
@@ -221,12 +333,12 @@ function initSurvey(): void {
       updateTabsVisibility();
 
       setTimeout(() => {
-        alert("Thank you! Your response has been saved.\n\nYou can now:\n• View all participant names in the 'Names' tab\n• See analytics in the 'Analytics' tab\n• Edit your response and resubmit\n• Click 'Clear Form' to start a new response");
+        alert(i18n.t('completionMessage'));
 
         // Show success message in save indicator
         const indicator = document.getElementById('saveIndicator');
         if (indicator) {
-          indicator.textContent = '✓ Response submitted successfully';
+          indicator.textContent = i18n.t('responseSubmitted');
           indicator.style.color = '#4caf50';
         }
 
@@ -252,7 +364,7 @@ function setupClearFormButton(): void {
   if (!clearBtn) return;
 
   clearBtn.onclick = () => {
-    if (confirm("Are you sure you want to clear all form data? This will return you to the welcome screen.")) {
+    if (confirm(i18n.t('clearFormConfirm'))) {
       clearFormData();
 
       // Reinitialize the survey to clear all fields
@@ -275,7 +387,7 @@ function setupClearFormButton(): void {
         setupStartSurveyButton();
       }
 
-      alert("Form has been cleared! You'll see the welcome screen again.");
+      alert(i18n.t('formCleared'));
     }
   };
 }
@@ -336,7 +448,7 @@ function renderSurvey(survey: Model, container: HTMLElement): void {
     if (!survey.isFirstPage) {
       const prevBtn = document.createElement("button");
       prevBtn.type = "button";
-      prevBtn.textContent = "Previous";
+      prevBtn.textContent = i18n.t('navigationButtons.previous');
       prevBtn.style.cssText = "padding: 12px 24px; background: #666; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;";
       prevBtn.onclick = () => {
         survey.prevPage();
@@ -350,7 +462,7 @@ function renderSurvey(survey: Model, container: HTMLElement): void {
     if (!survey.isLastPage) {
       const nextBtn = document.createElement("button");
       nextBtn.type = "button";
-      nextBtn.textContent = "Next";
+      nextBtn.textContent = i18n.t('navigationButtons.next');
       nextBtn.style.cssText = "padding: 12px 24px; background: #1976d2; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;";
       nextBtn.onclick = () => {
         // Validate current page before proceeding (unless skipping validation)
@@ -369,7 +481,7 @@ function renderSurvey(survey: Model, container: HTMLElement): void {
     } else {
       const completeBtn = document.createElement("button");
       completeBtn.type = "button";
-      completeBtn.textContent = "Complete";
+      completeBtn.textContent = i18n.t('navigationButtons.complete');
       completeBtn.style.cssText = "padding: 12px 24px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;";
       completeBtn.onclick = () => {
         // Validate all pages before completing (unless skipping validation)
@@ -497,7 +609,7 @@ function createInput(question: any, survey: Model): HTMLElement | null {
 
         const otherInput = document.createElement("input");
         otherInput.type = "text";
-        otherInput.placeholder = "Other (please specify)";
+        otherInput.placeholder = i18n.t('checkboxOther');
         otherInput.style.cssText = "margin-left: 8px; padding: 5px; border: 1px solid #ddd; border-radius: 4px;";
         otherInput.disabled = true;
 
@@ -683,7 +795,7 @@ function createInput(question: any, survey: Model): HTMLElement | null {
 
       const tagInput = document.createElement("input");
       tagInput.type = "text";
-      tagInput.placeholder = "Type and press Enter to add";
+      tagInput.placeholder = i18n.t('tagboxPlaceholder');
       tagInput.style.cssText = "width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; margin-bottom: 10px;";
 
       const tagsContainer = document.createElement("div");
@@ -731,7 +843,7 @@ function createInput(question: any, survey: Model): HTMLElement | null {
         const choicesDiv = document.createElement("div");
         choicesDiv.style.cssText = "margin-bottom: 10px;";
         const choicesLabel = document.createElement("small");
-        choicesLabel.textContent = "Suggestions: ";
+        choicesLabel.textContent = i18n.t('tagboxSuggestions');
         choicesLabel.style.cssText = "color: #666;";
         choicesDiv.appendChild(choicesLabel);
 
@@ -763,7 +875,7 @@ function createInput(question: any, survey: Model): HTMLElement | null {
 
     default:
       const unsupported = document.createElement("div");
-      unsupported.textContent = `Question type "${question.getType()}" not yet supported in simple renderer`;
+      unsupported.textContent = i18n.t('unsupportedQuestionType', { type: question.getType() });
       unsupported.style.cssText = "color: #999; font-style: italic;";
       return unsupported;
   }
@@ -774,7 +886,7 @@ async function initResults(): Promise<void> {
   const resultsElement = document.getElementById("resultsElement");
   if (!resultsElement) return;
 
-  resultsElement.innerHTML = '<div style="padding: 20px; text-align: center;">Loading responses...</div>';
+  resultsElement.innerHTML = `<div style="padding: 20px; text-align: center;">${i18n.t('resultsView.loading')}</div>`;
 
   const responses = await loadResponses();
 
@@ -783,7 +895,7 @@ async function initResults(): Promise<void> {
   if (responses.length === 0) {
     resultsElement.innerHTML = `
       <div style="padding: 20px; text-align: center; color: #666;">
-        <p>No responses yet. Fill out the form first!</p>
+        <p>${i18n.t('resultsView.noResponses')}</p>
       </div>
     `;
     return;
@@ -792,12 +904,12 @@ async function initResults(): Promise<void> {
   // Show response count
   const countDiv = document.createElement("div");
   countDiv.className = "response-count";
-  countDiv.textContent = `Total Responses: ${responses.length}`;
+  countDiv.textContent = `${i18n.t('resultsView.totalResponses')} ${responses.length}`;
   resultsElement.appendChild(countDiv);
 
   // Create download CSV button
   const downloadButton = document.createElement("button");
-  downloadButton.textContent = "Download CSV";
+  downloadButton.textContent = i18n.t('resultsView.downloadCSV');
   downloadButton.style.cssText = "margin-left: 10px; padding: 10px 15px; background: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer;";
   downloadButton.onclick = () => {
     downloadCSV(responses);
@@ -909,7 +1021,7 @@ function downloadCSV(responses: any[]): void {
   }));
 
   if (transformedResponses.length === 0) {
-    alert('No data to download');
+    alert(i18n.t('noDataToDownload'));
     return;
   }
 
@@ -959,7 +1071,7 @@ async function initAnalytics(): Promise<void> {
   const analyticsElement = document.getElementById("analyticsElement");
   if (!analyticsElement) return;
 
-  analyticsElement.innerHTML = '<div style="padding: 20px; text-align: center;">Loading analytics...</div>';
+  analyticsElement.innerHTML = `<div style="padding: 20px; text-align: center;">${i18n.t('analyticsView.loading')}</div>`;
 
   const responses = await loadResponses();
 
@@ -968,7 +1080,7 @@ async function initAnalytics(): Promise<void> {
   if (responses.length === 0) {
     analyticsElement.innerHTML = `
       <div style="padding: 20px; text-align: center; color: #666;">
-        <p>No responses yet. Fill out the form to see analytics!</p>
+        <p>${i18n.t('analyticsView.noResponses')}</p>
       </div>
     `;
     return;
@@ -977,7 +1089,7 @@ async function initAnalytics(): Promise<void> {
   // Show response count
   const countDiv = document.createElement("div");
   countDiv.className = "response-count";
-  countDiv.textContent = `Analyzing ${responses.length} responses`;
+  countDiv.textContent = `${i18n.t('analyticsView.analyzing')} ${responses.length} responses`;
   analyticsElement.appendChild(countDiv);
 
   // Transform data for analytics - extract the data field and remove sensitive fields
@@ -1008,7 +1120,7 @@ async function initNames(): Promise<void> {
   const namesElement = document.getElementById("namesElement");
   if (!namesElement) return;
 
-  namesElement.innerHTML = '<div style="padding: 20px; text-align: center;">Loading names...</div>';
+  namesElement.innerHTML = `<div style="padding: 20px; text-align: center;">${i18n.t('namesView.loading')}</div>`;
 
   const responses = await loadResponses();
 
@@ -1017,7 +1129,7 @@ async function initNames(): Promise<void> {
   if (responses.length === 0) {
     namesElement.innerHTML = `
       <div style="padding: 20px; text-align: center; color: #666;">
-        <p>No responses yet. Fill out the form first!</p>
+        <p>${i18n.t('namesView.noResponses')}</p>
       </div>
     `;
     return;
@@ -1026,7 +1138,7 @@ async function initNames(): Promise<void> {
   // Show response count
   const countDiv = document.createElement("div");
   countDiv.className = "response-count";
-  countDiv.textContent = `Total Participants: ${responses.length}`;
+  countDiv.textContent = `${i18n.t('namesView.totalParticipants')} ${responses.length}`;
   namesElement.appendChild(countDiv);
 
   // Create names list
@@ -1034,20 +1146,21 @@ async function initNames(): Promise<void> {
   namesList.style.cssText = "margin-top: 20px;";
 
   // Extract names from responses
+  const anonymousText = i18n.t('namesView.anonymous');
   const names = responses
     .map(r => {
       const data = r.data || r;
       return {
-        name: data.name || 'Anonymous',
+        name: data.name || anonymousText,
         timestamp: r.created_at
       };
     })
-    .filter(item => item.name && item.name !== 'Anonymous');
+    .filter(item => item.name && item.name !== anonymousText);
 
   if (names.length === 0) {
     namesElement.innerHTML += `
       <div style="padding: 20px; text-align: center; color: #666;">
-        <p>No names provided in responses.</p>
+        <p>${i18n.t('namesView.noNames')}</p>
       </div>
     `;
     return;
@@ -1191,7 +1304,7 @@ function startCountdownTimer(): void {
     const diffMs = AUCTION_DATE.getTime() - now.getTime();
 
     if (diffMs < 0) {
-      timeToAuctionEl.textContent = 'Huutokauppa on päättynyt.';
+      timeToAuctionEl.textContent = i18n.t('auctionEnded');
       if (countdownInterval) {
         clearInterval(countdownInterval);
         countdownInterval = null;
@@ -1203,17 +1316,20 @@ function startCountdownTimer(): void {
     const hours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
 
-    // Format: "3 päivää, 4 tuntia ja 8 minuuttia"
+    // Format with proper pluralization
     const parts: string[] = [];
     if (days > 0) {
-      parts.push(`${days} ${days === 1 ? 'päivä' : 'päivää'}`);
+      parts.push(`${days} ${i18n.formatTimeUnit('day', days)}`);
     }
     if (hours > 0 || days > 0) {
-      parts.push(`${hours} ${hours === 1 ? 'tunti' : 'tuntia'}`);
+      parts.push(`${hours} ${i18n.formatTimeUnit('hour', hours)}`);
     }
-    parts.push(`${minutes} ${minutes === 1 ? 'minuutti' : 'minuuttia'}`);
+    parts.push(`${minutes} ${i18n.formatTimeUnit('minute', minutes)}`);
 
-    timeToAuctionEl.textContent = parts.join(', ').replace(/,([^,]*)$/, ' ja$1');
+    // Join with commas and "and" for the last item - language specific
+    const lang = i18n.getLanguage();
+    const andWord = lang === 'fi' ? 'ja' : 'and';
+    timeToAuctionEl.textContent = parts.join(', ').replace(/,([^,]*)$/, ` ${andWord}$1`);
   };
 
   // Update immediately and then every minute
@@ -1275,6 +1391,10 @@ async function updateInvestmentStatus(): Promise<void> {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize language and translations
+  initLanguageSelector();
+  updateTranslations();
+
   checkResultsAccess();
   updateTabsVisibility();
   initTabs();
