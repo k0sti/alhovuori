@@ -18,15 +18,15 @@ Bun.serve({
     const url = new URL(req.url);
     const path = url.pathname;
 
-    // Stats routes
-    if (path === "/stats" || path.startsWith("/stats/")) {
-      // Redirect /stats to /stats/ for proper relative paths
-      if (path === "/stats") {
-        return Response.redirect(new URL("/stats/", req.url), 301);
+    // Auction stats routes
+    if (path === "/auction" || path.startsWith("/auction/")) {
+      // Redirect /auction to /auction/ for proper relative paths
+      if (path === "/auction") {
+        return Response.redirect(new URL("/auction/", req.url), 301);
       }
 
-      // Handle stats API
-      if (path === "/stats/api/properties") {
+      // Handle auction API
+      if (path === "/auction/api/properties") {
         try {
           console.log("Fetching auction data...");
           const properties = await scrapeAuctionData();
@@ -54,16 +54,16 @@ Bun.serve({
         }
       }
 
-      // Serve stats static files
-      const statsPath = path.replace(/^\/stats\/?/, "");
+      // Serve auction stats static files
+      const statsPath = path.replace(/^\/auction\/?/, "");
 
-      // For /stats/ root, serve index.html
+      // For /auction/ root, serve index.html
       if (!statsPath || statsPath === "") {
         const indexFile = Bun.file(join(STATS_DIST, "index.html"));
         if (await indexFile.exists()) {
           return new Response(indexFile);
         }
-        return new Response("Stats index.html not found", { status: 404 });
+        return new Response("Auction stats index.html not found", { status: 404 });
       }
 
       // For other files, serve them directly
@@ -74,99 +74,23 @@ Bun.serve({
       }
 
       // If file not found, return 404
-      return new Response(`Stats file not found: ${statsPath}`, { status: 404 });
+      return new Response(`Auction file not found: ${statsPath}`, { status: 404 });
     }
 
-    // Survey routes
-    if (path === "/survey" || path.startsWith("/survey/")) {
-      // Redirect /survey to /survey/ for proper relative paths
-      if (path === "/survey") {
-        return Response.redirect(new URL("/survey/", req.url), 301);
+    // Survey routes - serve at root
+    // Handle asset requests
+    if (path.startsWith("/assets/")) {
+      const assetPath = join(SURVEY_DIST, path);
+      const file = Bun.file(assetPath);
+      if (await file.exists()) {
+        return new Response(file);
       }
-
-      // Remove /survey prefix for file lookup
-      const surveyPath = path.replace(/^\/survey\/?/, "");
-
-      // Handle asset requests
-      if (surveyPath.startsWith("assets/")) {
-        const assetPath = join(SURVEY_DIST, surveyPath);
-        const file = Bun.file(assetPath);
-        if (await file.exists()) {
-          return new Response(file);
-        }
-      }
-
-      // Serve index.html for all other survey routes
-      const indexFile = Bun.file(join(SURVEY_DIST, "index.html"));
-      if (await indexFile.exists()) {
-        return new Response(indexFile);
-      }
-
-      return new Response("Survey not found. Did you build the survey package?", {
-        status: 404
-      });
     }
 
-    // Root route - show available routes
-    if (path === "/" || path === "") {
-      return new Response(
-        `
-        <!DOCTYPE html>
-        <html>
-          <head>
-            <meta charset="UTF-8">
-            <title>Alhovuori</title>
-            <style>
-              body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-                max-width: 600px;
-                margin: 80px auto;
-                padding: 20px;
-                background: #f5f5f5;
-              }
-              .container {
-                background: white;
-                padding: 40px;
-                border-radius: 8px;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-              }
-              h1 {
-                color: #2d5016;
-                margin-bottom: 30px;
-              }
-              a {
-                display: block;
-                padding: 15px 20px;
-                margin: 10px 0;
-                background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-                color: white;
-                text-decoration: none;
-                border-radius: 6px;
-                transition: transform 0.2s;
-              }
-              a:hover {
-                transform: translateY(-2px);
-              }
-              p {
-                color: #666;
-                line-height: 1.6;
-              }
-            </style>
-          </head>
-          <body>
-            <div class="container">
-              <h1>🏔️ Alhovuori</h1>
-              <p>Welcome to the Alhovuori community project platform.</p>
-              <a href="/survey/">📋 Survey / Kysely</a>
-              <a href="/stats/">📊 Auction Stats / Huutokauppa</a>
-            </div>
-          </body>
-        </html>
-        `,
-        {
-          headers: { "Content-Type": "text/html; charset=utf-8" }
-        }
-      );
+    // Serve survey index.html for root and all other routes (SPA fallback)
+    const indexFile = Bun.file(join(SURVEY_DIST, "index.html"));
+    if (await indexFile.exists()) {
+      return new Response(indexFile);
     }
 
     // 404 for other routes
@@ -179,5 +103,5 @@ Bun.serve({
 });
 
 console.log(`✓ Server running at http://localhost:${PORT}`);
-console.log(`  → Survey:  http://localhost:${PORT}/survey/`);
-console.log(`  → Stats:   http://localhost:${PORT}/stats/`);
+console.log(`  → Survey:  http://localhost:${PORT}/`);
+console.log(`  → Auction: http://localhost:${PORT}/auction/`);

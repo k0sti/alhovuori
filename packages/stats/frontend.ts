@@ -17,7 +17,7 @@ async function loadData() {
   dataContainer.style.display = 'none';
 
   try {
-    const response = await fetch('/api/properties');
+    const response = await fetch('/auction/api/properties');
     const data = await response.json();
 
     renderTable(data.properties);

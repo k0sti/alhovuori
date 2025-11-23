@@ -82,11 +82,19 @@ export async function scrapeAuctionData(): Promise<PropertyData[]> {
     { id: '5812110', propertyNumber: '444-519-3-18' },
   ];
 
+  console.log(`[Scraper] Starting to scrape ${properties.length} properties...`);
   const results: PropertyData[] = [];
+  let completed = 0;
 
   for (const prop of properties) {
     const url = `https://huutokaupat.com/kohde/${prop.id}`;
+    console.log(`[Scraper] Fetching ${++completed}/${properties.length}: ${prop.propertyNumber} (ID: ${prop.id})`);
+
+    const startTime = Date.now();
     const { currentPrice, hasBids, status, auctionEnd, minutesLeft } = await fetchPropertyPrice(url);
+    const elapsed = Date.now() - startTime;
+
+    console.log(`[Scraper]   ✓ ${prop.propertyNumber}: ${currentPrice}€, ${status} (${elapsed}ms)`);
 
     results.push({
       id: prop.id,
@@ -103,6 +111,8 @@ export async function scrapeAuctionData(): Promise<PropertyData[]> {
     await new Promise(resolve => setTimeout(resolve, 500));
   }
 
+  const total = calculateTotal(results);
+  console.log(`[Scraper] ✅ Complete! Total: ${total}€`);
   return results;
 }
 

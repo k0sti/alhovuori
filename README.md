@@ -15,6 +15,11 @@ alhovuori/
 ├── shared/            # Shared utilities and types
 ├── scripts/           # Database management scripts
 └── docs/              # Documentation
+
+Routes:
+├── /                  # Landing page
+├── /survey/           # Survey app (GitHub Pages: yourusername.github.io/alhovuori)
+└── /auction/          # Auction stats (server only)
 ```
 
 ## Quick Start
@@ -51,7 +56,7 @@ bun run start
 The server will start at:
 - Root: http://localhost:3000/ (landing page with links)
 - Survey: http://localhost:3000/survey/
-- Stats: http://localhost:3000/stats/
+- Auction: http://localhost:3000/auction/
 
 ## Available Commands
 
@@ -67,7 +72,7 @@ The server will start at:
 | Command | Description |
 |---------|-------------|
 | `bun run dev:survey` | Develop survey package only (Vite) |
-| `bun run dev:stats` | Develop stats package only |
+| `bun run dev:stats` | Develop auction stats package only |
 | `bun run build:survey` | Build survey for production |
 
 ### Database & Results
