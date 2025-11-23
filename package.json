@@ -9,12 +9,14 @@
     "scripts"
   ],
   "scripts": {
-    "dev": "cd packages/survey && bun run dev",
+    "start": "bun --hot server.ts",
+    "dev": "bun --hot server.ts",
     "dev:survey": "cd packages/survey && bun run dev",
-    "build": "bun run build:survey",
+    "dev:stats": "cd packages/stats && bun run dev",
+    "build": "bun run build:all",
     "build:survey": "cd packages/survey && bun run build",
     "build:all": "bun run build:survey",
-    "preview": "cd packages/survey && bun run preview",
+    "preview": "bun run build:all && bun run start",
     "preview:survey": "cd packages/survey && bun run preview",
     "setup-db": "bun run scripts/setup-db.ts",
     "setup-db:reset": "bun run scripts/setup-db.ts --reset",

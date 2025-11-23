@@ -1,6 +1,6 @@
 # Alhovuori Community Project
 
-A monorepo containing web applications for the Alhovuori community project. Currently includes a dynamic questionnaire system built with SurveyJS.
+A monorepo containing web applications for the Alhovuori community project. Includes a multilingual survey system and auction statistics tracker.
 
 ## Project Structure
 
@@ -8,8 +8,10 @@ This is a monorepo with multiple packages:
 
 ```
 alhovuori/
+├── server.ts          # Main routing server
 ├── packages/          # Application packages
-│   └── survey/        # Survey form application
+│   ├── survey/        # Survey form application (with i18n)
+│   └── stats/         # Auction statistics tracker
 ├── shared/            # Shared utilities and types
 ├── scripts/           # Database management scripts
 └── docs/              # Documentation
@@ -39,20 +41,38 @@ cp .env.example .env
 # Initialize database
 bun run setup-db
 
-# Start development server
-bun run dev
+# Build all packages
+bun run build
+
+# Start integrated server
+bun run start
 ```
 
-The survey app will open at http://localhost:5173
+The server will start at:
+- Root: http://localhost:3000/ (landing page with links)
+- Survey: http://localhost:3000/survey/
+- Stats: http://localhost:3000/stats/
 
 ## Available Commands
 
+### Main Server
 | Command | Description |
 |---------|-------------|
-| `bun install` | Install all dependencies |
-| `bun run dev` | Run survey app in dev mode |
-| `bun run build` | Build survey app for production |
-| `bun run preview` | Preview production build |
+| `bun run start` | Start production server (serves both apps) |
+| `bun run dev` | Start dev server with hot reload |
+| `bun run build` | Build all packages |
+| `bun run preview` | Build and preview production version |
+
+### Package Development
+| Command | Description |
+|---------|-------------|
+| `bun run dev:survey` | Develop survey package only (Vite) |
+| `bun run dev:stats` | Develop stats package only |
+| `bun run build:survey` | Build survey for production |
+
+### Database & Results
+| Command | Description |
+|---------|-------------|
 | `bun run setup-db` | Initialize database |
 | `bun run view-results` | View survey responses via CLI |
 
@@ -64,6 +84,7 @@ See [DEVELOPMENT.md](./docs/DEVELOPMENT.md) for more commands.
 
 A flexible, JSON-configurable questionnaire system with:
 
+- **🌍 Multi-language Support**: Finnish and English with URL parameter support
 - **Conditional Logic**: Questions appear/hide based on answers
 - **Auto-save**: Form progress saved to LocalStorage
 - **Cloud Storage**: Responses stored in Supabase
@@ -72,12 +93,31 @@ A flexible, JSON-configurable questionnaire system with:
 - **Names List**: View survey participants
 - **Welcome Screen**: Project information and description
 
+**Language Support:**
+- Use `?lang=en` or `?language=en` in URL
+- Click FI/EN buttons in header
+- Persists across sessions
+
 **Technology:**
 - SurveyJS - Form engine
 - Vite - Build tool
 - TypeScript - Type safety
 - Supabase - Backend database
 - Tabulator Tables - Data display
+
+### Stats (`packages/stats`)
+
+Real-time auction price tracker:
+
+- **📈 Live Data**: Scrapes huutokaupat.com for current bids
+- **💰 Investment Tracking**: Shows total investment amounts
+- **🔄 Auto-refresh**: Updates statistics automatically
+- **📊 Property Listings**: Displays all properties with bids
+
+**Technology:**
+- Bun.serve - Server with HTML imports
+- TypeScript - Type safety
+- Native fetch - Data scraping
 
 ## Documentation
 
