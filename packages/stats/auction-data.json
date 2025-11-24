@@ -1,0 +1,87 @@
+{
+  "properties": [
+    {
+      "id": "5811936",
+      "propertyNumber": "444-519-3-28",
+      "url": "https://huutokaupat.com/kohde/5811936",
+      "currentPrice": 40000,
+      "hasBids": true,
+      "status": "Ended",
+      "auctionEnd": "2025-11-23T11:21:17.000Z",
+      "minutesLeft": -225
+    },
+    {
+      "id": "5811954",
+      "propertyNumber": "444-519-2-104",
+      "url": "https://huutokaupat.com/kohde/5811954",
+      "currentPrice": 11800,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-14T17:00:00+02:00",
+      "minutesLeft": 30233
+    },
+    {
+      "id": "5811984",
+      "propertyNumber": "444-519-2-154",
+      "url": "https://huutokaupat.com/kohde/5811984",
+      "currentPrice": 4500,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-14T17:00:00+02:00",
+      "minutesLeft": 30233
+    },
+    {
+      "id": "5812020",
+      "propertyNumber": "444-519-2-155",
+      "url": "https://huutokaupat.com/kohde/5812020",
+      "currentPrice": 4500,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-14T17:00:00+02:00",
+      "minutesLeft": 30233
+    },
+    {
+      "id": "5812050",
+      "propertyNumber": "444-519-2-165",
+      "url": "https://huutokaupat.com/kohde/5812050",
+      "currentPrice": 19500,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-23T15:08:12.000Z",
+      "minutesLeft": 2
+    },
+    {
+      "id": "5812083",
+      "propertyNumber": "444-519-2-168",
+      "url": "https://huutokaupat.com/kohde/5812083",
+      "currentPrice": 13300,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-23T16:00:00.000Z",
+      "minutesLeft": 53
+    },
+    {
+      "id": "5812101",
+      "propertyNumber": "444-519-3-29",
+      "url": "https://huutokaupat.com/kohde/5812101",
+      "currentPrice": 4500,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-23T17:00:00.000Z",
+      "minutesLeft": 113
+    },
+    {
+      "id": "5812110",
+      "propertyNumber": "444-519-3-18",
+      "url": "https://huutokaupat.com/kohde/5812110",
+      "currentPrice": 216000,
+      "hasBids": true,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-23T18:00:00.000Z",
+      "minutesLeft": 173
+    }
+  ],
+  "total": 314100,
+  "timestamp": "2025-11-23T15:06:45.671Z",
+  "lastUpdated": "23.11.2025 klo 17.06.45"
+}
