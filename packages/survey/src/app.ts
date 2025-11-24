@@ -1101,6 +1101,7 @@ async function initAnalytics(): Promise<void> {
   });
 
   // Filter out sensitive questions from analytics
+  const surveyConfig = i18n.getSurveyConfig();
   const allQuestions = new Model(surveyConfig).getAllQuestions();
   const analyticsQuestions = allQuestions.filter(q =>
     q.name !== 'name' && q.name !== 'contact'
