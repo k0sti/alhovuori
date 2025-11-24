@@ -1,0 +1,39 @@
+name: Update Auction Data
+
+on:
+  # Run every hour
+  schedule:
+    - cron: '0 * * * *'
+
+  # Allow manual trigger
+  workflow_dispatch:
+
+# Required permissions
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: Install dependencies
+      run: bun install
+
+    - name: Scrape auction data
+      run: cd packages/stats && bun run scrape-to-file.ts
+
+    - name: Commit and push if changed
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add packages/stats/auction-data.json
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update auction data [skip ci]" && git push)
