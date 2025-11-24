@@ -1,4 +1,4 @@
-name: Build and Deploy Survey to GitHub Pages
+name: Build and Deploy to GitHub Pages
 
 on:
   # Allow manual triggering
@@ -9,6 +9,7 @@ on:
     branches: [ main ]
     paths:
       - 'packages/survey/**'
+      - 'packages/stats/**'
       - 'shared/**'
       - '.github/workflows/deploy-survey.yaml'
 
@@ -46,14 +47,26 @@ jobs:
         VITE_BASE_PATH: /alhovuori/
       run: bun run build:survey
 
+    - name: Scrape latest auction data
+      run: cd packages/stats && bun run scrape-to-file.ts
+
+    - name: Create deployment directory
+      run: |
+        mkdir -p deploy
+        cp -r packages/survey/dist/* deploy/
+        mkdir -p deploy/auction
+        cp packages/stats/index.html deploy/auction/
+        cp packages/stats/frontend.js deploy/auction/
+        cp packages/stats/auction-data.json deploy/auction/
+
     - name: Setup Pages
       uses: actions/configure-pages@v4
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        # Upload survey dist directory
-        path: './packages/survey/dist'
+        # Upload combined deployment directory
+        path: './deploy'
 
     - name: Deploy to GitHub Pages
       id: deployment

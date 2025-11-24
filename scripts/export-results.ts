@@ -26,13 +26,13 @@ if (!SUPABASE_URL || !SUPABASE_KEY) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // Load survey config to get UI text labels
-function loadSurveyConfig(): any {
+function loadSurveyConfig(language: string = 'fi'): any {
   try {
-    const configPath = join(import.meta.dir, '..', 'packages', 'survey', 'survey-config.json');
+    const configPath = join(import.meta.dir, '..', 'packages', 'survey', `survey-config.${language}.json`);
     const config = JSON.parse(readFileSync(configPath, 'utf-8'));
     return config;
   } catch (error) {
-    console.error('❌ Failed to load survey config:', error);
+    console.error(`❌ Failed to load survey config for language '${language}':`, error);
     process.exit(1);
   }
 }
@@ -152,9 +152,9 @@ function filterNewestByEmail(responses: any[]): any[] {
 }
 
 // Main export function
-async function exportResults(outputPath?: string): Promise<void> {
+async function exportResults(outputPath?: string, language: string = 'fi'): Promise<void> {
   // Load survey config
-  const config = loadSurveyConfig();
+  const config = loadSurveyConfig(language);
   const questionMap = buildQuestionMap(config);
 
   // Fetch and filter responses
@@ -197,15 +197,19 @@ async function exportResults(outputPath?: string): Promise<void> {
 async function main() {
   const args = Bun.argv.slice(2);
   let outputPath: string | undefined;
+  let language: string = 'fi';
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--output' || args[i] === '-o') {
       outputPath = args[i + 1];
       i++;
+    } else if (args[i] === '--language' || args[i] === '-l') {
+      language = args[i + 1];
+      i++;
     }
   }
 
-  await exportResults(outputPath);
+  await exportResults(outputPath, language);
 }
 
 main().catch((error) => {
