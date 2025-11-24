@@ -8,7 +8,7 @@
       "hasBids": true,
       "status": "Ended",
       "auctionEnd": "2025-11-23T11:21:17.000Z",
-      "minutesLeft": -1967
+      "minutesLeft": -2026
     },
     {
       "id": "5811954",
@@ -18,7 +18,7 @@
       "hasBids": true,
       "status": "Ended",
       "auctionEnd": "2025-11-23T12:05:19.000Z",
-      "minutesLeft": -1923
+      "minutesLeft": -1982
     },
     {
       "id": "5811984",
@@ -28,7 +28,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-14T20:20:00+02:00",
-      "minutesLeft": 28692
+      "minutesLeft": 28633
     },
     {
       "id": "5812020",
@@ -36,9 +36,9 @@
       "url": "https://huutokaupat.com/kohde/5812020",
       "currentPrice": 4500,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T14:00:40.000Z",
-      "minutesLeft": -1808
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-14T20:20:00+02:00",
+      "minutesLeft": 28633
     },
     {
       "id": "5812050",
@@ -48,7 +48,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-14T20:20:00+02:00",
-      "minutesLeft": 28691
+      "minutesLeft": 28633
     },
     {
       "id": "5812083",
@@ -56,9 +56,9 @@
       "url": "https://huutokaupat.com/kohde/5812083",
       "currentPrice": 26300,
       "hasBids": true,
-      "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-14T20:20:00+02:00",
-      "minutesLeft": 28691
+      "status": "Ended",
+      "auctionEnd": "2025-11-23T16:33:21.000Z",
+      "minutesLeft": -1714
     },
     {
       "id": "5812101",
@@ -66,9 +66,9 @@
       "url": "https://huutokaupat.com/kohde/5812101",
       "currentPrice": 6500,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T17:00:00.000Z",
-      "minutesLeft": -1629
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-14T20:20:00+02:00",
+      "minutesLeft": 28633
     },
     {
       "id": "5812110",
@@ -78,10 +78,10 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-14T20:20:00+02:00",
-      "minutesLeft": 28691
+      "minutesLeft": 28633
     }
   ],
   "total": 332100,
-  "timestamp": "2025-11-24T20:08:41.459Z",
-  "lastUpdated": "24.11.2025 klo 20.08.41"
+  "timestamp": "2025-11-24T21:07:16.183Z",
+  "lastUpdated": "24.11.2025 klo 21.07.16"
 }
