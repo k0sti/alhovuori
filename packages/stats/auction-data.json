@@ -7,8 +7,8 @@
       "currentPrice": 40000,
       "hasBids": true,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-12T13:00:00+02:00",
-      "minutesLeft": 23272
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5811954",
@@ -16,9 +16,9 @@
       "url": "https://huutokaupat.com/kohde/5811954",
       "currentPrice": 11800,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T12:05:19.000Z",
-      "minutesLeft": -4023
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5811984",
@@ -26,9 +26,9 @@
       "url": "https://huutokaupat.com/kohde/5811984",
       "currentPrice": 4500,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T13:05:26.000Z",
-      "minutesLeft": -3962
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5812020",
@@ -37,8 +37,8 @@
       "currentPrice": 4500,
       "hasBids": true,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-12T13:00:00+02:00",
-      "minutesLeft": 23272
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5812050",
@@ -47,8 +47,8 @@
       "currentPrice": 21500,
       "hasBids": true,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-12T13:00:00+02:00",
-      "minutesLeft": 23272
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5812083",
@@ -57,8 +57,8 @@
       "currentPrice": 26300,
       "hasBids": true,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-12T13:00:00+02:00",
-      "minutesLeft": 23272
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5812101",
@@ -66,9 +66,9 @@
       "url": "https://huutokaupat.com/kohde/5812101",
       "currentPrice": 6500,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T17:00:00.000Z",
-      "minutesLeft": -3728
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-11-30T19:13:00+02:00",
+      "minutesLeft": 6303
     },
     {
       "id": "5812110",
@@ -78,10 +78,10 @@
       "hasBids": true,
       "status": "Ended",
       "auctionEnd": "2025-11-23T18:03:00.000Z",
-      "minutesLeft": -3665
+      "minutesLeft": -3727
     }
   ],
   "total": 332100,
-  "timestamp": "2025-11-26T07:08:10.158Z",
-  "lastUpdated": "26.11.2025 klo 7.08.10"
+  "timestamp": "2025-11-26T08:10:13.951Z",
+  "lastUpdated": "26.11.2025 klo 8.10.13"
 }
