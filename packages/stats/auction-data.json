@@ -6,9 +6,9 @@
       "url": "https://huutokaupat.com/kohde/5811936",
       "currentPrice": 40000,
       "hasBids": true,
-      "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-11-30T18:05:00+02:00",
-      "minutesLeft": 5127
+      "status": "Ended",
+      "auctionEnd": "2025-11-23T11:21:17.000Z",
+      "minutesLeft": -5286
     },
     {
       "id": "5811954",
@@ -18,7 +18,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-11-30T18:05:00+02:00",
-      "minutesLeft": 5127
+      "minutesLeft": 5078
     },
     {
       "id": "5811984",
@@ -28,7 +28,7 @@
       "hasBids": true,
       "status": "Ended",
       "auctionEnd": "2025-11-23T13:05:26.000Z",
-      "minutesLeft": -5133
+      "minutesLeft": -5182
     },
     {
       "id": "5812020",
@@ -38,7 +38,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-11-30T18:05:00+02:00",
-      "minutesLeft": 5127
+      "minutesLeft": 5078
     },
     {
       "id": "5812050",
@@ -48,7 +48,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-11-30T18:05:00+02:00",
-      "minutesLeft": 5127
+      "minutesLeft": 5077
     },
     {
       "id": "5812083",
@@ -58,7 +58,7 @@
       "hasBids": true,
       "status": "Ended",
       "auctionEnd": "2025-11-23T16:33:21.000Z",
-      "minutesLeft": -4925
+      "minutesLeft": -4974
     },
     {
       "id": "5812101",
@@ -68,7 +68,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-11-30T18:05:00+02:00",
-      "minutesLeft": 5127
+      "minutesLeft": 5077
     },
     {
       "id": "5812110",
@@ -78,10 +78,10 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-11-30T18:05:00+02:00",
-      "minutesLeft": 5127
+      "minutesLeft": 5077
     }
   ],
   "total": 332100,
-  "timestamp": "2025-11-27T02:38:26.837Z",
-  "lastUpdated": "27.11.2025 klo 2.38.26"
+  "timestamp": "2025-11-27T03:27:38.546Z",
+  "lastUpdated": "27.11.2025 klo 3.27.38"
 }
