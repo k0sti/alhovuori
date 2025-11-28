@@ -8,7 +8,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28433
     },
     {
       "id": "5811954",
@@ -18,7 +18,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28433
     },
     {
       "id": "5811984",
@@ -28,7 +28,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28433
     },
     {
       "id": "5812020",
@@ -38,7 +38,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28433
     },
     {
       "id": "5812050",
@@ -48,7 +48,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28432
     },
     {
       "id": "5812083",
@@ -58,7 +58,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28432
     },
     {
       "id": "5812101",
@@ -66,9 +66,9 @@
       "url": "https://huutokaupat.com/kohde/5812101",
       "currentPrice": 6500,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T17:00:00.000Z",
-      "minutesLeft": -6976
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 28432
     },
     {
       "id": "5812110",
@@ -78,10 +78,10 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 28484
+      "minutesLeft": 28432
     }
   ],
   "total": 332100,
-  "timestamp": "2025-11-28T13:16:06.254Z",
-  "lastUpdated": "28.11.2025 klo 13.16.06"
+  "timestamp": "2025-11-28T14:07:39.369Z",
+  "lastUpdated": "28.11.2025 klo 14.07.39"
 }
