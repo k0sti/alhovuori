@@ -8,7 +8,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 27413
+      "minutesLeft": 27351
     },
     {
       "id": "5811954",
@@ -16,9 +16,9 @@
       "url": "https://huutokaupat.com/kohde/5811954",
       "currentPrice": 11800,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T12:05:19.000Z",
-      "minutesLeft": -8342
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 27351
     },
     {
       "id": "5811984",
@@ -28,7 +28,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 27413
+      "minutesLeft": 27351
     },
     {
       "id": "5812020",
@@ -38,7 +38,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 27413
+      "minutesLeft": 27351
     },
     {
       "id": "5812050",
@@ -46,9 +46,9 @@
       "url": "https://huutokaupat.com/kohde/5812050",
       "currentPrice": 21500,
       "hasBids": true,
-      "status": "Ended",
-      "auctionEnd": "2025-11-23T15:12:31.000Z",
-      "minutesLeft": -8155
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 27351
     },
     {
       "id": "5812083",
@@ -58,7 +58,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 27413
+      "minutesLeft": 27351
     },
     {
       "id": "5812101",
@@ -68,7 +68,7 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 27413
+      "minutesLeft": 27351
     },
     {
       "id": "5812110",
@@ -78,10 +78,10 @@
       "hasBids": true,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-18T10:00:00+02:00",
-      "minutesLeft": 27413
+      "minutesLeft": 27351
     }
   ],
   "total": 332100,
-  "timestamp": "2025-11-29T07:07:28.686Z",
-  "lastUpdated": "29.11.2025 klo 7.07.28"
+  "timestamp": "2025-11-29T08:09:24.115Z",
+  "lastUpdated": "29.11.2025 klo 8.09.24"
 }
