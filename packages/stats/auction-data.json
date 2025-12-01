@@ -7,8 +7,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2009
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5811954",
@@ -17,8 +17,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5811984",
@@ -27,8 +27,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5812020",
@@ -37,8 +37,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5812050",
@@ -47,8 +47,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5812083",
@@ -57,8 +57,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5812101",
@@ -67,8 +67,8 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     },
     {
       "id": "5812110",
@@ -77,11 +77,11 @@
       "currentPrice": 0,
       "hasBids": false,
       "status": "Ended - Verifying bids",
-      "auctionEnd": "2025-12-02T19:40:00+02:00",
-      "minutesLeft": 2008
+      "auctionEnd": "2025-12-18T10:00:00+02:00",
+      "minutesLeft": 24408
     }
   ],
   "total": 0,
-  "timestamp": "2025-12-01T08:11:40.995Z",
-  "lastUpdated": "1.12.2025 klo 8.11.40"
+  "timestamp": "2025-12-01T09:11:44.456Z",
+  "lastUpdated": "1.12.2025 klo 9.11.44"
 }
