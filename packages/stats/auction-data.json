@@ -5,67 +5,83 @@
       "propertyNumber": "444-519-3-28",
       "url": "https://huutokaupat.com/kohde/5811936",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5811954",
       "propertyNumber": "444-519-2-104",
       "url": "https://huutokaupat.com/kohde/5811954",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5811984",
       "propertyNumber": "444-519-2-154",
       "url": "https://huutokaupat.com/kohde/5811984",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5812020",
       "propertyNumber": "444-519-2-155",
       "url": "https://huutokaupat.com/kohde/5812020",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5812050",
       "propertyNumber": "444-519-2-165",
       "url": "https://huutokaupat.com/kohde/5812050",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5812083",
       "propertyNumber": "444-519-2-168",
       "url": "https://huutokaupat.com/kohde/5812083",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5812101",
       "propertyNumber": "444-519-3-29",
       "url": "https://huutokaupat.com/kohde/5812101",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     },
     {
       "id": "5812110",
       "propertyNumber": "444-519-3-18",
       "url": "https://huutokaupat.com/kohde/5812110",
       "currentPrice": 0,
-      "hasBids": true,
-      "status": "Active"
+      "hasBids": false,
+      "status": "Ended - Verifying bids",
+      "auctionEnd": "2025-12-12T18:55:00+02:00",
+      "minutesLeft": 4007
     }
   ],
   "total": 0,
-  "timestamp": "2025-12-09T21:07:06.439Z",
-  "lastUpdated": "9.12.2025 klo 21.07.06"
+  "timestamp": "2025-12-09T22:07:59.358Z",
+  "lastUpdated": "9.12.2025 klo 22.07.59"
 }
