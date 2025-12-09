@@ -39,3 +39,7 @@ dev:
 # Install dependencies
 install:
     bun install
+
+# Print all email addresses from survey responses
+emails:
+    @bun run scripts/print-emails.ts
