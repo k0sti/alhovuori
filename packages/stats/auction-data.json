@@ -8,7 +8,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5811954",
@@ -18,7 +18,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5811984",
@@ -28,7 +28,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5812020",
@@ -38,7 +38,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5812050",
@@ -48,7 +48,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5812083",
@@ -58,7 +58,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5812101",
@@ -68,7 +68,7 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     },
     {
       "id": "5812110",
@@ -78,10 +78,10 @@
       "hasBids": false,
       "status": "Ended - Verifying bids",
       "auctionEnd": "2025-12-12T18:55:00+02:00",
-      "minutesLeft": 3680
+      "minutesLeft": 3639
     }
   ],
   "total": 0,
-  "timestamp": "2025-12-10T03:34:59.771Z",
-  "lastUpdated": "10.12.2025 klo 3.34.59"
+  "timestamp": "2025-12-10T04:15:53.025Z",
+  "lastUpdated": "10.12.2025 klo 4.15.53"
 }
