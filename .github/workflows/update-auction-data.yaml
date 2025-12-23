@@ -1,12 +1,13 @@
 name: Update Auction Data
 
-on:
-  # Run every hour
-  schedule:
-    - cron: '0 * * * *'
-
-  # Allow manual trigger
-  workflow_dispatch:
+# Workflow disabled - uncomment 'on:' section to re-enable
+# on:
+#   # Run every hour
+#   schedule:
+#     - cron: '0 * * * *'
+#
+#   # Allow manual trigger
+#   workflow_dispatch:
 
 # Required permissions
 permissions:
